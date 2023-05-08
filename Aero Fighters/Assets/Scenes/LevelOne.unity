@@ -647,6 +647,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rigidbody: {fileID: 846846965}
   velocidadeMovimento: 7
+  bullet1prefab: {fileID: 8117045073874146500, guid: e5976a3fe80214f4c8bc484853c7da16, type: 3}
 --- !u!1 &859351910
 GameObject:
   m_ObjectHideFlags: 0
@@ -850,7 +851,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1985864933}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: cam_localization
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
