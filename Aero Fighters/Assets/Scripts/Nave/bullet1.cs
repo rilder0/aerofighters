@@ -18,7 +18,9 @@ public class bullet1 : MonoBehaviour
     {
         if (collision.CompareTag("CaçaEstelar"))
         {
-            Destroy(collision.gameObject);
+            CaçaEstelar caçaestelar = collision.GetComponent<CaçaEstelar>();
+            caçaestelar.DestroyCaça();
+                    
             Destroy(this.gameObject);
         }
     }
@@ -28,6 +30,9 @@ public class bullet1 : MonoBehaviour
 // como podemos fazer que, a partir do primeiro instante que a colisao ocorrer, ambos o tiro e o caçaestelar sejam destruidos? pra gente especificar quem sera destruido, temos que colocar tags 
 //nos prefabs, pois a partir do metodo compare tag, o metodo destroy podera identificar quem esta com essa tag e destruilo, ou seja, quando a bala entrar na colisao com o inimigo, o objeto que a 
 //bala colidiu, ou seja, o proprio inimigo, será destruido, bem como a prória bala;
+//pra ajustarmos a pontuação, tive que mudar algumas coisas: quando a colisao ocorrer, uma pontuação deverá ser incrementada. esse metodo já existe, criei ele no script do inimigo, mas preciso acessar
+//ele no metodo que registra a pontuação então: criei uma variavel do tipo do inimigo e fiz com que esse codigo da bala tivesse acesso ao script do inimigo, para aí sim chamarmos o metodo DestroyCaça que 
+//incrementa a pontuação
 
 
 

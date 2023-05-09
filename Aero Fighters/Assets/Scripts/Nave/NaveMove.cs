@@ -9,9 +9,11 @@ public class NaveMove : MonoBehaviour
     public bullet1 bullet1prefab;
     private float bulle1ttime;
     
+    
     void Start()
     {
         this.bulle1ttime = 0;
+        PointsControlr.Pontuation = 0; //jogador inicia com pontuacao = 0
     }
 
     void Update()
