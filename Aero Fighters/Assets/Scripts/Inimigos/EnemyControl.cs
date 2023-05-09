@@ -14,10 +14,10 @@ public class EnemyControl : MonoBehaviour
     void Update()
     {
         this.timeAfter += Time.deltaTime;
-        if (this.timeAfter >= 1f)
+        if (this.timeAfter >= 5f)
         {
             this.timeAfter = 0;
-            //cada 1 segundo se cria um novo inimigo
+            //cada 5 segundo se cria um novo caça estelar
 
             Vector2 CaçaPositionMaximum = Camera.main.ViewportToScreenPoint(new Vector2(8, 4));
             Vector2 CaçaPositionMinimum = Camera.main.ViewportToScreenPoint(new Vector2(8, -3));

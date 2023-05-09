@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -4782474594137087854}
   m_Layer: 0
   m_Name: "Ca\xE7a Estelar"
-  m_TagString: Untagged
+  m_TagString: "Ca\xE7aEstelar"
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
