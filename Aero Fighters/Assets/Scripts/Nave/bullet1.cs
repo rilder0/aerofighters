@@ -20,7 +20,6 @@ public class bullet1 : MonoBehaviour
         {
             CaçaEstelar caçaestelar = collision.GetComponent<CaçaEstelar>();
             caçaestelar.DestroyCaça();
-                    
             Destroy(this.gameObject);
         }
     }
