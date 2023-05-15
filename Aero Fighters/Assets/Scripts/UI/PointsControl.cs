@@ -25,7 +25,8 @@ public static class PointsControlr
     }
 }
 
-//
+//esse script basicamente é pra fazer um controle dos pontos. criei uma variavel points começando com zero e alguns mecanismos basicos, como por exemplo: não existir pontuação negativa, ou seja, quando
+//a pontuação for = 0, ela imediatamente se torna zero.
 
 
 

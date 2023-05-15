@@ -19,7 +19,7 @@ public class bullet1 : MonoBehaviour
         if (collision.CompareTag("CaçaEstelar"))
         {
             CaçaEstelar caçaestelar = collision.GetComponent<CaçaEstelar>();
-            caçaestelar.DestroyCaça();
+            caçaestelar.DestroyCaça(true);
             Destroy(this.gameObject);
         }
     }

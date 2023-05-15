@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,9 +10,12 @@ public class NaveMove : MonoBehaviour
     public bullet1 bullet1prefab;
     private float bulle1ttime;
     
+    private int health;
+    
     
     void Start()
     {
+        this.health = 5;
         this.bulle1ttime = 0;
         PointsControlr.Pontuation = 0; //jogador inicia com pontuacao = 0
     }
@@ -39,15 +43,37 @@ public class NaveMove : MonoBehaviour
 
     }
 
+    private void OnTriggerEnter2D(Collider2D collission)
+    {
+        if (collission.CompareTag("CaçaEstelar"))
+        {
+            health--;
+            CaçaEstelar caçaestelar = collission.GetComponent<CaçaEstelar>();
+            caçaestelar.DestroyCaça(false);
+        }
+    }
+
+
+    public int Health
+    {
+        get
+        {
+            return this.health;
+        }
+        set
+        {
+            this.health = value;
+            if (this.health < 0)
+            {
+                this.health = 0;
+            }
+        }
+    }
+    
     private void Atirar()
     {
         Instantiate(this.bullet1prefab, this.transform.position, Quaternion.identity);
     }
-    
-    
-    
-    
-    
     
     
 }
