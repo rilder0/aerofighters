@@ -121,8 +121,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigidbody: {fileID: 8936763700464457376}
-  velocidadeMin: 5
-  velocidadeMax: 10
+  velocidadeMin: 15
+  velocidadeMax: 16
 --- !u!58 &-4782474594137087854
 CircleCollider2D:
   m_ObjectHideFlags: 0
