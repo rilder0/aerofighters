@@ -14,6 +14,11 @@ public class bullet1 : MonoBehaviour
         this.rigidbody.velocity = new Vector2(bullet1velocityX, 0);
     }
 
+    void Update() 
+    {
+    }
+
+
     public void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("CaçaEstelar"))
@@ -21,6 +26,7 @@ public class bullet1 : MonoBehaviour
             CaçaEstelar caçaestelar = collision.GetComponent<CaçaEstelar>();
             caçaestelar.DestroyCaça(true);
             Destroy(this.gameObject);
+            
         }
     }
 }
