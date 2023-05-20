@@ -5,7 +5,7 @@ using UnityEngine;
 public class CaçaEstelar : MonoBehaviour
 {
 
-    public Rigidbody2D rigidbody;
+    public Rigidbody2D Caçarigidbody;
     public float velocidadeMin;
     public float velocidadeMax;
 
@@ -17,7 +17,7 @@ public class CaçaEstelar : MonoBehaviour
 
     void Update()
     {
-        this.rigidbody.velocity = new Vector2(-this.velocidadeY, 0);
+        this.Caçarigidbody.velocity = new Vector2(-this.velocidadeY, 0);
     }
     public void DestroyCaça(bool isover)
     {

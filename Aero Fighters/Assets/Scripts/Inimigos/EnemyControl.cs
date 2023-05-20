@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyControl : MonoBehaviour
 {
     public CaçaEstelar CaçaOriginal;
+    public AttackShip AttackOriginal;
     private float timeAfter;
     void Start()
     {

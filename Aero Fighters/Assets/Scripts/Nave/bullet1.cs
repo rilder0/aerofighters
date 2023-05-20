@@ -7,11 +7,11 @@ using UnityEngine;
 public class bullet1 : MonoBehaviour
 {
 
-    public Rigidbody2D rigidbody;
+    public Rigidbody2D Bullet1rigidbody;
     public float bullet1velocityX;
     void Start()
     {
-        this.rigidbody.velocity = new Vector2(bullet1velocityX, 0);
+        this.Bullet1rigidbody.velocity = new Vector2(bullet1velocityX, 0);
     }
 
     void Update() 
