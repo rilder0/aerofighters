@@ -6,18 +6,31 @@ public class EnemyControl : MonoBehaviour
 {
     public CaçaEstelar CaçaOriginal;
     public AttackShip AttackOriginal;
-    private float timeAfter;
+    public BattleCruiser CruiserOriginal;
+
+    private float timeAfterCaça;
+    private float timeAfterAttackShip;
+    private float timeAfterCruiser;
+
     void Start()
     {
-        this.timeAfter = 0;
+        this.timeAfterCaça = 0;
+        this.timeAfterAttackShip = 0;
     }
 
     void Update()
     {
-        this.timeAfter += Time.deltaTime;
-        if (this.timeAfter >= 5f)
+        CriarCaça();
+        CriarAttackShip();
+        CriarBattleCruiser();
+    }
+
+    private void CriarCaça() {
+
+        this.timeAfterCaça += Time.deltaTime;
+        if (this.timeAfterCaça >= 8f)
         {
-            this.timeAfter = 0;
+            this.timeAfterCaça = 0;
             //cada 5 segundo se cria um novo caça estelar
 
             Vector2 CaçaPositionMaximum = Camera.main.ViewportToScreenPoint(new Vector2(8, 4));
@@ -29,6 +42,44 @@ public class EnemyControl : MonoBehaviour
             
             
             Instantiate(this.CaçaOriginal, CaçaPosition, Quaternion.identity);
+        }
+    }
+
+    private void CriarAttackShip() {
+
+        this.timeAfterAttackShip += Time.deltaTime;
+        if (this.timeAfterAttackShip >= 25f)
+        {
+            this.timeAfterAttackShip = 0;
+            //cada 5 segundo se cria um novo caça estelar
+
+            Vector2 AttackShipPositionMaximum = Camera.main.ViewportToScreenPoint(new Vector2(8, 4));
+            Vector2 AttackshipPositionMinimum = Camera.main.ViewportToScreenPoint(new Vector2(8, -3));
+
+            float AttackShipPositionY = Random.Range(4,-3);
+            
+            Vector2 AttackShipPosition = new Vector2(8, AttackShipPositionY);
+            
+            Instantiate(this.AttackOriginal, AttackShipPosition, Quaternion.identity);
+        }
+    }
+
+    private void CriarBattleCruiser() {
+
+        this.timeAfterCruiser += Time.deltaTime;
+        if (this.timeAfterCruiser >= 10f)
+        {
+            this.timeAfterCruiser = 0;
+            //cada 5 segundo se cria um novo cruzador de batalha
+
+            Vector2 CruiserPositionMaximum = Camera.main.ViewportToScreenPoint(new Vector2(8, 4));
+            Vector2 CruiserPositionMinimum = Camera.main.ViewportToScreenPoint(new Vector2(8, -3));
+
+            float CruiserPositionY = Random.Range(4,-3);
+            
+            Vector2 CruiserPosition = new Vector2(8, CruiserPositionY);
+            
+            Instantiate(this.CruiserOriginal, CruiserPosition, Quaternion.identity);
         }
     }
 }
@@ -49,6 +100,9 @@ public class EnemyControl : MonoBehaviour
 //como eu fiz pra que o inimigo fosse gerado em diferentes posições do eixo y? eu fiz com que o eixo Y (positionY) tivesse um valor aleatório entre 4 e -3, que são os valores máximo e mínimo, e alterei
 //pra que esse valor aleatorio assuma realmente o valor de y: Vector2 CaçaPosition = new Vector2(8, positionY);
 
+//pra instanciar mais de um inimigo, primeiramente separei a criação periódia de inimigos em funções: CriarCaça(), e por aí vai. Dentro dessas funções, dei um control c e control v no código base do
+//caça estelar e mudei os nomes das variáveis. importante que a variavel que guarda a informação do tempo pra cada inimigo ser criado, não pode ser uma só. Tive que criar o time after pro caça, pra nave
+//de ataque e entre outros.
 
 
 

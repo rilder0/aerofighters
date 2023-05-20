@@ -164,5 +164,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Attackshiprigidbody: {fileID: 405623614}
-  velocidadeMin: 10
-  velocidadeMax: 20
+  velocidadeMin: 4
+  velocidadeMax: 2

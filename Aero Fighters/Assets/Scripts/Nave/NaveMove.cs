@@ -9,12 +9,15 @@ public class NaveMove : MonoBehaviour
     public float velocidadeMovimento;
     public bullet1 bullet1prefab;
     private float bulle1ttime;
+    private float TimetoDestroyBullet1;
+    public int RestHealths;
     
     private int health;
     
     
     void Start()
     {
+        this.RestHealths = 5;
         this.health = 5;
         this.bulle1ttime = 0;
         PointsControlr.Pontuation = 0; //jogador inicia com pontuacao = 0
@@ -23,6 +26,7 @@ public class NaveMove : MonoBehaviour
     void Update()
     {
         this.bulle1ttime += Time.deltaTime;
+        this.TimetoDestroyBullet1 += Time.deltaTime;
         if (this.bulle1ttime >= 0.1f)
         {
             this.bulle1ttime = 0f;
@@ -52,8 +56,7 @@ public class NaveMove : MonoBehaviour
             caçaestelar.DestroyCaça(false);
         }
     }
-
-
+    
     public int Health
     {
         get
@@ -69,12 +72,23 @@ public class NaveMove : MonoBehaviour
             }
         }
     }
+
+    private void ShowRestHealths() {
+
+        if (this.health <= 0) {
+            this.RestHealths--;
+        }
+    }
     
     private void Atirar()
     {
         Instantiate(this.bullet1prefab, this.transform.position, Quaternion.identity);
+        
+        if(this.TimetoDestroyBullet1 >= 0.5f) {
+            Destroy(bullet1prefab);
+        }
+
     }
-    
     
 }
 
@@ -87,6 +101,14 @@ public class NaveMove : MonoBehaviour
 //havera a colisão, mas ela será uma colisao meio plastica, perfeita, sem efeitos da fisica, mas o fato de um entrar no ambiente de colisão do outro será registrado. tornar trigger 
 //significa dizer pra gente que uma colisao ta ocorrendo, mas sem os efeitos da fisica
 
+//dps que eu fiz o codigo das barras de vida, quando a nave principal colidia com o caça estelar, sumia 2 ou até 3
+//barrinhas de vida. as barrinhas de vida estavam associadas às vidas do jogador, tipo, a vida começava com 5 e 
+//conforme a colisão entre a nave e o caça estelar é registrada, uma vida é retirada, e onsequentemente, uma barrinha de
+//vida também. o que tava acontecendo era que o caça estelar e a nave tavam cheio de colisores, e dependendo do angulo
+//que a nave atingia o caça estelar, batia em mais de um colisor, aí a colisão era contada mais de uma vez. a solução pra 
+//isso foi deixar um colisor pra cada, mas nem o box collider e o circle collider não se encaixavam no design das duas naves
+//aí eu descobri o edge collider 2d, que é um collider 2D que você consegue desenhar em volta (nas bordas, por isso o nome edge)
+//da nave
 
 
 
