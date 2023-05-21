@@ -48,7 +48,7 @@ public class EnemyControl : MonoBehaviour
     private void CriarAttackShip() {
 
         this.timeAfterAttackShip += Time.deltaTime;
-        if (this.timeAfterAttackShip >= 25f)
+        if (this.timeAfterAttackShip >= 5f)
         {
             this.timeAfterAttackShip = 0;
             //cada 5 segundo se cria um novo caça estelar

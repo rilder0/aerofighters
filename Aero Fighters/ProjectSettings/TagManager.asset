@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Bullet1
   - "Ca\xE7aEstelar"
+  - AttackShip
   layers:
   - Default
   - TransparentFX

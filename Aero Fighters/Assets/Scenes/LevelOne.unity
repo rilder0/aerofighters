@@ -823,7 +823,7 @@ MonoBehaviour:
   rigidbody: {fileID: 846846965}
   velocidadeMovimento: 5
   bullet1prefab: {fileID: 8117045073874146500, guid: e5976a3fe80214f4c8bc484853c7da16, type: 3}
-  RestHealths: 0
+  RestHealths: 5
 --- !u!68 &846846967
 EdgeCollider2D:
   m_ObjectHideFlags: 0
@@ -2316,10 +2316,6 @@ PrefabInstance:
     - target: {fileID: 6215318474553652894, guid: fea1771ae7cc4a744aea6ec72534508e, type: 3}
       propertyPath: m_Name
       value: boss
-      objectReference: {fileID: 0}
-    - target: {fileID: 6215318474553652894, guid: fea1771ae7cc4a744aea6ec72534508e, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fea1771ae7cc4a744aea6ec72534508e, type: 3}

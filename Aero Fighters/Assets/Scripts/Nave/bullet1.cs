@@ -9,13 +9,24 @@ public class bullet1 : MonoBehaviour
 
     public Rigidbody2D Bullet1rigidbody;
     public float bullet1velocityX;
+
+    private float TimetoDestroyBullet1; //variavel que guarda o tempo pra bala do jogador ser destruída (ela tem alcance limitado)
+
     void Start()
     {
+        this.TimetoDestroyBullet1 = 0; //começa com 0 segundos
         this.Bullet1rigidbody.velocity = new Vector2(bullet1velocityX, 0);
     }
 
     void Update() 
     {
+        this.TimetoDestroyBullet1 += Time.deltaTime; //aumenta 1s 
+        if(this.TimetoDestroyBullet1 >= 0.5f) { //quando se passar meio segundo, a contagem zera de novo pra um novo ciclo 
+            TimetoDestroyBullet1 = 0;           // e o gameobject que esse script tá associado (bullet1) é destruído
+            Destroy(this.gameObject);
+        }
+
+
     }
 
 
@@ -28,6 +39,15 @@ public class bullet1 : MonoBehaviour
             Destroy(this.gameObject);
             
         }
+
+        if(collision.CompareTag("AttackShip")) { //caso a bala do jogador colida com o attackship
+            AttackShip attackShip = collision.GetComponent<AttackShip>(); //acessar os métodos do script attackship
+            attackShip.HealthAttackShip -= 5; //quando a bala colidir com o attackhip, 5 vidas são retiradas
+            Destroy(this.gameObject); //quando a bala colide com o gameobject com a tag "attackship" ele era destruido, pra evitar do bug de a bala atravessar o attackship
+            if (attackShip.HealthAttackShip <= 0) {  //quando a vida do attackship = 0, chamar o método que destroi o attackship como verdade
+                attackShip.DestroyAttackShip(true);
+            }
+        }
     }
 }
 
@@ -38,6 +58,8 @@ public class bullet1 : MonoBehaviour
 //pra ajustarmos a pontuação, tive que mudar algumas coisas: quando a colisao ocorrer, uma pontuação deverá ser incrementada. esse metodo já existe, criei ele no script do inimigo, mas preciso acessar
 //ele no metodo que registra a pontuação então: criei uma variavel do tipo do inimigo e fiz com que esse codigo da bala tivesse acesso ao script do inimigo, para aí sim chamarmos o metodo DestroyCaça que 
 //incrementa a pontuação
+
+//explicação da colisão com o attackship tá explicado lá no código mesmo
 
 
 

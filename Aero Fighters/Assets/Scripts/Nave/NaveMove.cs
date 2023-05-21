@@ -9,7 +9,6 @@ public class NaveMove : MonoBehaviour
     public float velocidadeMovimento;
     public bullet1 bullet1prefab;
     private float bulle1ttime;
-    private float TimetoDestroyBullet1;
     public int RestHealths;
     
     private int health;
@@ -26,7 +25,6 @@ public class NaveMove : MonoBehaviour
     void Update()
     {
         this.bulle1ttime += Time.deltaTime;
-        this.TimetoDestroyBullet1 += Time.deltaTime;
         if (this.bulle1ttime >= 0.1f)
         {
             this.bulle1ttime = 0f;
@@ -55,6 +53,15 @@ public class NaveMove : MonoBehaviour
             CaçaEstelar caçaestelar = collission.GetComponent<CaçaEstelar>();
             caçaestelar.DestroyCaça(false);
         }
+
+        if (collission.CompareTag("AttackShip"))
+        {
+            health -= 2;
+            AttackShip attackship = collission.GetComponent<AttackShip>();
+            attackship.DestroyAttackShip(false);
+        }
+
+
     }
     
     public int Health
@@ -83,11 +90,6 @@ public class NaveMove : MonoBehaviour
     private void Atirar()
     {
         Instantiate(this.bullet1prefab, this.transform.position, Quaternion.identity);
-        
-        if(this.TimetoDestroyBullet1 >= 0.5f) {
-            Destroy(bullet1prefab);
-        }
-
     }
     
 }
