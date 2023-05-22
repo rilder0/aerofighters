@@ -4,25 +4,50 @@ using UnityEngine;
 
 public class EnemyControl : MonoBehaviour
 {
-    public CaçaEstelar CaçaOriginal;
-    public AttackShip AttackOriginal;
-    public BattleCruiser CruiserOriginal;
+    //Gerais 
+    private float TimeforAppear;
 
+    //Obstacles
+    public Obstacles Obstacle1Prefab;
+    public Obstacles Obstacle2Prefab;
+    private float timeAfterObstacles;
+    //Caça Estelar
+    public CaçaEstelar CaçaOriginal;
     private float timeAfterCaça;
+
+    //Nave de Ataque
+    public AttackShip AttackOriginal;
     private float timeAfterAttackShip;
+
+    //Cruzador de batalha
+    public BattleCruiser CruiserOriginal;
     private float timeAfterCruiser;
+
+    //Nave Mãe
+
+
+
+
 
     void Start()
     {
+        this.timeAfterObstacles = 0;
+        this.TimeforAppear = 0; //contagem do tempo inicia com 0
         this.timeAfterCaça = 0;
         this.timeAfterAttackShip = 0;
     }
 
     void Update()
     {
+        CriarObstaculo1();
+        CriarObstaculo2();
+        TimeforAppear += Time.deltaTime;
+        if (TimeforAppear >= 60) {
         CriarCaça();
         CriarAttackShip();
         CriarBattleCruiser();
+
+        }
     }
 
     private void CriarCaça() {
@@ -80,6 +105,46 @@ public class EnemyControl : MonoBehaviour
             Vector2 CruiserPosition = new Vector2(8, CruiserPositionY);
             
             Instantiate(this.CruiserOriginal, CruiserPosition, Quaternion.identity);
+        }
+    }
+
+    private void CriarObstaculo1() {
+
+        this.timeAfterObstacles += Time.deltaTime;
+        if (this.timeAfterObstacles >= 5f)
+        {
+            this.timeAfterObstacles = 0;
+            //cada 5 segundo se cria um novo cruzador de batalha
+
+            Vector2 Obstacle1PositionMaximum = Camera.main.ViewportToScreenPoint(new Vector2(8, 4));
+            Vector2 Obstacle1PositionMinimum = Camera.main.ViewportToScreenPoint(new Vector2(8, -3));
+
+            float Obstacle1PositionY = Random.Range(3,-3);
+            float Obstacle2PositionY = Random.Range(4,-3);
+            
+            Vector2 Obstacle1Position = new Vector2(8, Obstacle1PositionY);
+            Vector2 Obstacle2Position = new Vector2(8, Obstacle2PositionY);
+            
+            Instantiate(this.Obstacle1Prefab, Obstacle1Position, Quaternion.identity);
+        }
+    }
+
+    private void CriarObstaculo2() {
+
+        this.timeAfterObstacles += Time.deltaTime;
+        if (this.timeAfterObstacles >= 3f)
+        {
+            this.timeAfterObstacles = 0;
+            //cada 5 segundo se cria um novo obstáculo
+
+            Vector2 Obstacle2PositionMaximum = Camera.main.ViewportToScreenPoint(new Vector2(8, 4));
+            Vector2 Obstacle2PositionMinimum = Camera.main.ViewportToScreenPoint(new Vector2(8, -3));
+
+            float Obstacle2PositionY = Random.Range(4,-3);
+            
+            Vector2 Obstacle2Position = new Vector2(8, Obstacle2PositionY);
+            
+            Instantiate(this.Obstacle2Prefab, Obstacle2Position, Quaternion.identity);
         }
     }
 }
