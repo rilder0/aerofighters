@@ -149,3 +149,4 @@ MonoBehaviour:
   Attackshiprigidbody: {fileID: 3453953282570342305}
   velocidadeMin: 4
   velocidadeMax: 2
+  PrefabBullet: {fileID: 2252832862404703292, guid: 7b0d66c13011dd045ae1af18f1990ea5, type: 3}

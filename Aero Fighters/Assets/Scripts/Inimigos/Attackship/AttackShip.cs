@@ -11,15 +11,30 @@ public class AttackShip : MonoBehaviour
     private float velocidadeY;
 
     private int healthAttackShip;
+    
+    public AttackShipBullet PrefabBullet;
+    private float BulletAttackShipTime; //tempo entre criação de balas
+    public float MaxAngle = 30;
+    public float MinAngle = 10;
+    public float angulations;
 
     void Start()
     {
+        this.angulations = Random.Range(MinAngle, MaxAngle);
+        this.BulletAttackShipTime = 0;  //a conatagem de tempo inicia com 0
         this.healthAttackShip = 50;
         this.velocidadeY = Random.Range(this.velocidadeMin, this.velocidadeMax);
     }
 
     void Update()
     {
+        this.BulletAttackShipTime += Time.deltaTime;
+        if (this.BulletAttackShipTime >= 1f)
+        {
+            this.BulletAttackShipTime = 0;
+            AttackShipAtirar();
+        }
+        
         Debug.Log("Vida do Attack Ship = " + healthAttackShip);
         this.Attackshiprigidbody.velocity = new Vector2(-this.velocidadeY, 0);
     }
@@ -34,7 +49,6 @@ public class AttackShip : MonoBehaviour
            Destroy(this.gameObject);
         }
     }
-
     public int HealthAttackShip
     {
         get
@@ -45,6 +59,11 @@ public class AttackShip : MonoBehaviour
         {
             this.healthAttackShip = value;
         }
+    }
+
+    private void AttackShipAtirar() //método 
+    {
+        Instantiate(this.PrefabBullet, this.transform.position, Quaternion.Euler(0f, 0, 90));
     }
 }
 

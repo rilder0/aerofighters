@@ -42,7 +42,7 @@ public class EnemyControl : MonoBehaviour
         CriarObstaculo1();
         CriarObstaculo2();
         TimeforAppear += Time.deltaTime;
-        if (TimeforAppear >= 60) {
+        if (TimeforAppear >= 1) {
         CriarCaça();
         CriarAttackShip();
         CriarBattleCruiser();
