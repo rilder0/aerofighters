@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HealthBar : MonoBehaviour
 {
-    public GameObject[] GreenBars;
+    public GameObject[] GreenBars;  //lista pra colocar as barrinhas verdes. cada uma delas vai ter um indice0
 
     public void ShowLifes(int healths) {
         for(int i = 0; i < this.GreenBars.Length; i++) {

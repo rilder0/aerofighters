@@ -9,9 +9,10 @@ public class NaveMove : MonoBehaviour
     public float velocidadeMovimento;
     public bullet1 bullet1prefab;
     private float bulle1ttime;
-    public int RestHealths;
+    public int RestHealths; //vidas restantes
     
-    private int health;
+    private int health; //variavel que guarda a quantidade de vidas atuais (n a quantidade de vidas restantes)
+    public HealthBar healthbar; //variavel do tipo Healthbar pra acessar os métodos dessa classe
     
     
     void Start()
@@ -24,6 +25,11 @@ public class NaveMove : MonoBehaviour
 
     void Update()
     {
+        if(this.health <= 0 && this.RestHealths >= 0) {   //caso a vida chegue a zero, mas ainda tenha vidas restantes
+            this.health = 5;                              //a barra de vida recomeça valendo 5 (o hp enche de novo)
+            this.RestHealths--;                           //e uma vida é retirada
+        }
+
         this.bulle1ttime += Time.deltaTime;
         if (this.bulle1ttime >= 0.1f)
         {
@@ -73,25 +79,16 @@ public class NaveMove : MonoBehaviour
         set
         {
             this.health = value;
-            if (this.health < 0)
+            if (this.health <= 0)
             {
                 this.health = 0;
             }
         }
-    }
-
-    private void ShowRestHealths() {
-
-        if (this.health <= 0) {
-            this.RestHealths--;
-        }
-    }
-    
+    }    
     private void Atirar()
     {
         Instantiate(this.bullet1prefab, this.transform.position, Quaternion.identity);
-    }
-    
+    }    
 }
 
 //para fazer com que a nave principal passe a criar tiros a partir de si, tivemos que transformar o tiro em um prefab e fazermos a seguinte lógica: criar uma variável 

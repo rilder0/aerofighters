@@ -35,7 +35,7 @@ public class AttackShip : MonoBehaviour
             AttackShipAtirar();
         }
         
-        Debug.Log("Vida do Attack Ship = " + healthAttackShip);
+        //Debug.Log("Vida do Attack Ship = " + healthAttackShip);
         this.Attackshiprigidbody.velocity = new Vector2(-this.velocidadeY, 0);
     }
 
@@ -61,7 +61,7 @@ public class AttackShip : MonoBehaviour
         }
     }
 
-    private void AttackShipAtirar() //método 
+    private void AttackShipAtirar() //método pro attackship instanciar um tiro
     {
         Instantiate(this.PrefabBullet, this.transform.position, Quaternion.Euler(0f, 0, 90));
     }
