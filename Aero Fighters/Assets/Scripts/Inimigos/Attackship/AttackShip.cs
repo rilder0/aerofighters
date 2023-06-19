@@ -13,14 +13,15 @@ public class AttackShip : MonoBehaviour
     private int healthAttackShip;
     
     public AttackShipBullet PrefabBullet;
+    public AttackShipB1 PrefabBullet1;
+    public AttackShipB2 PrefabBullet2;
+    public AttckShipB3 PrefabBullet3;
+    
+    
     private float BulletAttackShipTime; //tempo entre criação de balas
-    public float MaxAngle = 30;
-    public float MinAngle = 10;
-    public float angulations;
 
     void Start()
     {
-        this.angulations = Random.Range(MinAngle, MaxAngle);
         this.BulletAttackShipTime = 0;  //a conatagem de tempo inicia com 0
         this.healthAttackShip = 50;
         this.velocidadeY = Random.Range(this.velocidadeMin, this.velocidadeMax);
@@ -63,7 +64,10 @@ public class AttackShip : MonoBehaviour
 
     private void AttackShipAtirar() //método pro attackship instanciar um tiro
     {
-        Instantiate(this.PrefabBullet, this.transform.position, Quaternion.Euler(0f, 0, 90));
+        Instantiate(this.PrefabBullet, this.transform.position, Quaternion.identity);
+        Instantiate(this.PrefabBullet1, this.transform.position, Quaternion.Euler(0,0,10));
+        Instantiate(this.PrefabBullet2, this.transform.position, Quaternion.Euler(0,0,-10));
+        Instantiate(this.PrefabBullet3, this.transform.position, Quaternion.Euler(0,0,5));
     }
 }
 

@@ -150,3 +150,7 @@ MonoBehaviour:
   velocidadeMin: 4
   velocidadeMax: 2
   PrefabBullet: {fileID: 2252832862404703292, guid: 7b0d66c13011dd045ae1af18f1990ea5, type: 3}
+  GunsPosition:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
