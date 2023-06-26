@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class AttackShip : MonoBehaviour
@@ -13,12 +14,12 @@ public class AttackShip : MonoBehaviour
     private int healthAttackShip;
     
     public AttackShipBullet PrefabBullet;
-    public AttackShipB1 PrefabBullet1;
-    public AttackShipB2 PrefabBullet2;
-    public AttckShipB3 PrefabBullet3;
-    
     
     private float BulletAttackShipTime; //tempo entre criação de balas
+    
+    
+    
+    
 
     void Start()
     {
@@ -38,6 +39,14 @@ public class AttackShip : MonoBehaviour
         
         //Debug.Log("Vida do Attack Ship = " + healthAttackShip);
         this.Attackshiprigidbody.velocity = new Vector2(-this.velocidadeY, 0);
+        
+        Camera camera = Camera.main; //retorna a câmera principal
+        Vector3 posicaoNaCamera = camera.WorldToViewportPoint(this.transform.position); //converte a posição atual do jogador em uma posição relativa ao espaço da câmera
+
+        if (posicaoNaCamera.x > 10.56)
+        {
+            Destruir(false);
+        }
     }
 
     public void DestroyAttackShip(bool isover)
@@ -62,12 +71,18 @@ public class AttackShip : MonoBehaviour
         }
     }
 
+    public void Destruir(bool derrotado)
+    {
+        if (derrotado)
+        {
+            PointsControlr.Pontuation += 5;
+        }
+        Destroy(this.gameObject);
+    }
+
     private void AttackShipAtirar() //método pro attackship instanciar um tiro
     {
         Instantiate(this.PrefabBullet, this.transform.position, Quaternion.identity);
-        Instantiate(this.PrefabBullet1, this.transform.position, Quaternion.Euler(0,0,10));
-        Instantiate(this.PrefabBullet2, this.transform.position, Quaternion.Euler(0,0,-10));
-        Instantiate(this.PrefabBullet3, this.transform.position, Quaternion.Euler(0,0,5));
     }
 }
 

@@ -7,6 +7,8 @@ TagManager:
   - Bullet1
   - "Ca\xE7aEstelar"
   - AttackShip
+  - obstacle
+  - BattleCruiser
   layers:
   - Default
   - TransparentFX

@@ -53,6 +53,13 @@ public class NaveMove : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collission)
     {
+        if (collission.CompareTag("obstacle"))
+        {
+            health--;
+            Obstacles obstacles = collission.GetComponent<Obstacles>();
+            obstacles.DestroyObstacles(false);
+
+        }
         if (collission.CompareTag("CaçaEstelar"))
         {
             health--;
@@ -65,6 +72,14 @@ public class NaveMove : MonoBehaviour
             health -= 2;
             AttackShip attackship = collission.GetComponent<AttackShip>();
             attackship.DestroyAttackShip(false);
+        }
+
+        if (collission.CompareTag("BattleCruiser"))
+        {
+            health -= 2;
+            BattleCruiser battlecruiser = collission.GetComponent<BattleCruiser>();
+            battlecruiser.DestroyBattleCruiser(false); //impedir que o battlecruiser se destrua quando tocar com o jogador
+
         }
 
 

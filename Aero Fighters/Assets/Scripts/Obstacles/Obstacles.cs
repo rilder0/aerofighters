@@ -8,9 +8,12 @@ public class Obstacles : MonoBehaviour
     public float velocidadeMin; //velocidaes mínimas e máximas pra que a velocidade seja um n° aleatório entre elas
     public float velocidadeMax;
     private float velocidadeX;
+    
+    private int obstacleshealth;
 
     void Start()
     {
+        obstacleshealth = 1;
         this.velocidadeX = Random.Range(this.velocidadeMin, this.velocidadeMax); //definição da velocidade no eixo X
     }
 
@@ -18,4 +21,31 @@ public class Obstacles : MonoBehaviour
     {
         this.ObstacleRigidbody.velocity = new Vector2(-this.velocidadeX, 0); //velocidade no eixo y = 0
     }
+    
+    public int HealthAObstacles
+    {
+        get
+        {
+            return this.obstacleshealth;
+        }
+        set
+        {
+            this.obstacleshealth = value;
+        }
+    }
+
+    
+    public void DestroyObstacles(bool isover)
+    {
+        if (isover)
+        {
+            PointsControlr.Pontuation++;
+        }
+
+        if (obstacleshealth <= 0)
+        {
+            Destroy(this.gameObject);
+        }
+    }
+
 }

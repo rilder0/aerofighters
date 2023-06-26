@@ -48,6 +48,27 @@ public class bullet1 : MonoBehaviour
                 attackShip.DestroyAttackShip(true);
             }
         }
+
+        if (collision.CompareTag("obstacle"))
+        {
+            Obstacles obstacles = collision.GetComponent<Obstacles>();
+            obstacles.HealthAObstacles -= 1;
+            Destroy(this.gameObject);
+            if (obstacles.HealthAObstacles <= 0)
+            {
+                obstacles.DestroyObstacles(true);
+            }
+        }
+
+        if (collision.CompareTag("BattleCruiser"))
+        {
+            BattleCruiser battclecruiser = collision.GetComponent<BattleCruiser>();
+            battclecruiser.HealthBattcleCruiser -= 8;
+            if (battclecruiser.HealthBattcleCruiser <= 0)
+            {
+                battclecruiser.DestroyBattleCruiser(true);
+            }
+        }
     }
 }
 
