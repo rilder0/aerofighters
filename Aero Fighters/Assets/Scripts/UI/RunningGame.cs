@@ -11,8 +11,8 @@ public class RunningGame : MonoBehaviour
 
     private NaveMove navemove;
 
-    private void Start() {
-
+    private void Start()
+    {
         this.navemove = GameObject.FindGameObjectWithTag("Player").GetComponent<NaveMove>();
     }
     

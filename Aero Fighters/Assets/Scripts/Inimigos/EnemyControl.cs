@@ -24,6 +24,8 @@ public class EnemyControl : MonoBehaviour
     private float timeAfterCruiser;
 
     //Nave Mãe
+    public Boss BossOriginal;
+    private float timeAfterBoss;
 
 
 
@@ -35,6 +37,7 @@ public class EnemyControl : MonoBehaviour
         this.TimeforAppear = 0; //contagem do tempo inicia com 0
         this.timeAfterCaça = 0;
         this.timeAfterAttackShip = 0;
+        this.timeAfterBoss = 0;
     }
 
     void Update()
@@ -42,11 +45,15 @@ public class EnemyControl : MonoBehaviour
         CriarObstaculo1();
         CriarObstaculo2();
         TimeforAppear += Time.deltaTime;
-        if (TimeforAppear >= 1) {
+        if (TimeforAppear >= 10 && TimeforAppear <= 150) {
         CriarCaça();
         CriarAttackShip();
         CriarBattleCruiser();
+        }
 
+        if (TimeforAppear >= 155)
+        {
+            CriarBoss();
         }
     }
 
@@ -73,7 +80,7 @@ public class EnemyControl : MonoBehaviour
     private void CriarAttackShip() {
 
         this.timeAfterAttackShip += Time.deltaTime;
-        if (this.timeAfterAttackShip >= 5f)
+        if (this.timeAfterAttackShip >= 10f)
         {
             this.timeAfterAttackShip = 0;
             //cada 5 segundo se cria um novo caça estelar
@@ -92,7 +99,7 @@ public class EnemyControl : MonoBehaviour
     private void CriarBattleCruiser() {
 
         this.timeAfterCruiser += Time.deltaTime;
-        if (this.timeAfterCruiser >= 10f)
+        if (this.timeAfterCruiser >= 15f)
         {
             this.timeAfterCruiser = 0;
             //cada 5 segundo se cria um novo cruzador de batalha
@@ -111,7 +118,7 @@ public class EnemyControl : MonoBehaviour
     private void CriarObstaculo1() {
 
         this.timeAfterObstacles += Time.deltaTime;
-        if (this.timeAfterObstacles >= 5f)
+        if (this.timeAfterObstacles >= 8f)
         {
             this.timeAfterObstacles = 0;
             //cada 5 segundo se cria um novo cruzador de batalha
@@ -146,6 +153,26 @@ public class EnemyControl : MonoBehaviour
             
             Instantiate(this.Obstacle2Prefab, Obstacle2Position, Quaternion.identity);
         }
+    }
+
+    private void CriarBoss()
+    {
+        this.timeAfterBoss += Time.deltaTime;
+        if (this.timeAfterBoss >= 155f)
+        {
+            this.timeAfterBoss = 0;
+            //boss irá aparecer após 155s do jogo ser iniciado
+
+            Vector2 BossPositionMaximum = Camera.main.ViewportToScreenPoint(new Vector2(8, 4));
+            Vector2 BossPositionMinimum = Camera.main.ViewportToScreenPoint(new Vector2(8, -3));
+
+            float BossPositionY = Random.Range(4,-3);
+            
+            Vector2 BossPosition = new Vector2(8, BossPositionY);
+            
+            Instantiate(this.BossOriginal, BossPosition, Quaternion.identity);
+        }
+
     }
 }
 
