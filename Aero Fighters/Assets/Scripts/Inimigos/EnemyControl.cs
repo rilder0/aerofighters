@@ -27,6 +27,8 @@ public class EnemyControl : MonoBehaviour
     public Boss BossOriginal;
     private float timeAfterBoss;
 
+    public HpBoss HpBossPrefab;
+
 
 
 
@@ -42,13 +44,17 @@ public class EnemyControl : MonoBehaviour
 
     void Update()
     {
+        this.HpBossPrefab.gameObject.SetActive(false);
         CriarObstaculo1();
         CriarObstaculo2();
         TimeforAppear += Time.deltaTime;
-        if (TimeforAppear >= 10 && TimeforAppear <= 150) {
-        CriarCaça();
-        CriarAttackShip();
-        CriarBattleCruiser();
+        if (this.TimeforAppear >= 10 && TimeforAppear <= 150)
+        {
+            //CriarCaça();
+            //CriarAttackShip();
+            //CriarBattleCruiser();
+            CriarBoss();
+            this.HpBossPrefab.gameObject.SetActive(true);
         }
 
         if (TimeforAppear >= 155)
@@ -158,7 +164,7 @@ public class EnemyControl : MonoBehaviour
     private void CriarBoss()
     {
         this.timeAfterBoss += Time.deltaTime;
-        if (this.timeAfterBoss >= 155f)
+        if (this.timeAfterBoss >= 10f)
         {
             this.timeAfterBoss = 0;
             //boss irá aparecer após 155s do jogo ser iniciado
