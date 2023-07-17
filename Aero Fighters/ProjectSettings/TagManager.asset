@@ -9,6 +9,8 @@ TagManager:
   - AttackShip
   - obstacle
   - BattleCruiser
+  - bullet2
+  - bullet3
   layers:
   - Default
   - TransparentFX

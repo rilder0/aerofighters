@@ -5,14 +5,31 @@ using UnityEngine;
 
 public class NaveMove : MonoBehaviour
 {
+    public GameObject bulletPrefab;
+    public GameObject LocalBullets; //local em que os tiros serão disparados
+    
+    private int BulletSelected = 0; //0 = tiro simples;; 1 = tiro 2;;  2 = tiro 3
+
     public new Rigidbody2D rigidbody;
     public float velocidadeMovimento;
     public bullet1 bullet1prefab;
+    public bullet2 bullet2prefab;
+    public bullet3 bullet3prefab;
     private float bulle1ttime;
     public int RestHealths; //vidas restantes
     
     private int health; //variavel que guarda a quantidade de vidas atuais (n a quantidade de vidas restantes)
     public HealthBar healthbar; //variavel do tipo Healthbar pra acessar os métodos dessa classe
+
+    public GameObject bulletPf;
+    public GameObject bullet1Pf;
+    public GameObject bullet2Pf;
+    public GameObject bullet3Pf;
+    
+    
+    
+    
+    
     
     
     void Start()
@@ -25,6 +42,13 @@ public class NaveMove : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            BulletSelected = (BulletSelected + 1) % 3;
+        }
+        
+        
+        
         if(this.health <= 0 && this.RestHealths >= 0) {   //caso a vida chegue a zero, mas ainda tenha vidas restantes
             this.health = 5;                              //a barra de vida recomeça valendo 5 (o hp enche de novo)
             this.RestHealths--;                           //e uma vida é retirada
@@ -102,7 +126,24 @@ public class NaveMove : MonoBehaviour
     }    
     private void Atirar()
     {
-        Instantiate(this.bullet1prefab, this.transform.position, Quaternion.identity);
+        switch (BulletSelected) 
+        {
+            case 0:
+                bulletPf = bullet1Pf;
+                break;
+            case 1:
+                bulletPf = bullet2Pf;
+                break;
+            case 2:
+                bulletPf = bullet3Pf;
+                break;
+            default:
+                bulletPf = bullet1Pf;
+                break;
+        }
+
+        Instantiate(this.bulletPf, LocalBullets.transform.position, LocalBullets.transform.rotation);
+        //Instantiate(this.bullet1prefab, this.transform.position, Quaternion.identity);
     }    
 }
 

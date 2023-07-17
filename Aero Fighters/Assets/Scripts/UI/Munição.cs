@@ -16,7 +16,7 @@ public class Munição : MonoBehaviour
 
     void Update()
     {
-        Munição1.text = muniçãotirosimples.ToString("∞");
+        //Munição1.text = muniçãotirosimples.ToString("∞");
         if (Input.GetKey(KeyCode.Space) && !estaatirando && muniçãotirosimples > 0)
         {
             estaatirando = true;

@@ -13,7 +13,7 @@ public class AttackShip : MonoBehaviour
 
     private int healthAttackShip;
     
-    public AttackShipBullet PrefabBullet;
+    //public AttackShipBullet PrefabBullet;
     
     private float BulletAttackShipTime; //tempo entre criação de balas
     
@@ -82,7 +82,7 @@ public class AttackShip : MonoBehaviour
 
     private void AttackShipAtirar() //método pro attackship instanciar um tiro
     {
-        Instantiate(this.PrefabBullet, this.transform.position, Quaternion.identity);
+        //Instantiate(this.PrefabBullet, this.transform.position, Quaternion.identity);
     }
 }
 
