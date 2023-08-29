@@ -12,9 +12,6 @@ public class NaveMove : MonoBehaviour
 
     public new Rigidbody2D rigidbody;
     public float velocidadeMovimento;
-    public bullet1 bullet1prefab;
-    public bullet2 bullet2prefab;
-    public bullet3 bullet3prefab;
     private float bulle1ttime;
     public int RestHealths; //vidas restantes
     
@@ -25,8 +22,10 @@ public class NaveMove : MonoBehaviour
     public GameObject bullet1Pf;
     public GameObject bullet2Pf;
     public GameObject bullet3Pf;
-    
-    
+
+    public GameObject ImagemSelecaoB1;
+    public GameObject ImagemSelecaoB2;
+    public GameObject ImagemSelecaoB3;
     
     
     
@@ -142,7 +141,7 @@ public class NaveMove : MonoBehaviour
                 break;
         }
 
-        Instantiate(this.bulletPf, LocalBullets.transform.position, LocalBullets.transform.rotation);
+        Instantiate(this.bulletPf, this.transform.position, Quaternion.identity);
         //Instantiate(this.bullet1prefab, this.transform.position, Quaternion.identity);
     }    
 }
