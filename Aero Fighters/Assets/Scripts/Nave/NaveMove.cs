@@ -26,9 +26,14 @@ public class NaveMove : MonoBehaviour
     public GameObject ImagemSelecaoB3;
 
     public BulletControl bulletcontrol; //variavel pra acessar os métodos e atributos dessa classe
-    
-    
-    
+
+
+    //variáveis do escudo
+    private int EscudoInicial = 10; //quantidade de vida inicial de escudo
+    private int EscudoAtual; //quantidade atual de escudo
+    private int escudoMax = 30; //quantidade máxima da vida que o escudo pode ter
+    private bool escudoAtivo = false;
+    public ParticleSystem escudoParticle;
     
     
     void Start()
@@ -37,6 +42,11 @@ public class NaveMove : MonoBehaviour
         this.health = 5;
         this.bulle1ttime = 0;
         PointsControlr.Pontuation = 0; //jogador inicia com pontuacao = 0
+        if(escudoAtivo == true) {
+                EscudoAtual = EscudoInicial;
+
+        }
+        escudoParticle.Stop(); //
     }
 
     void Update()
@@ -89,7 +99,6 @@ public class NaveMove : MonoBehaviour
         this.rigidbody.velocity = new Vector2(velocidadeX, velocidadeY);
 
         Debug.Log("Munição do tiro laser: " + BulletControl.MuniçãoTiroLaser);
-        //Debug.Log("Porcentagem = " + (BulletControl.);
     }
 
     private void OnTriggerEnter2D(Collider2D collission)
@@ -164,6 +173,59 @@ public class NaveMove : MonoBehaviour
 
         Instantiate(this.TiroAtual, this.transform.position, Quaternion.identity);
     }    
+
+
+    public void AddEscudo(int quantidade) {
+
+        EscudoAtual += quantidade;
+
+        if(EscudoAtual > escudoMax) {
+
+            EscudoAtual = escudoMax;
+        }
+
+        EscudoOn();
+    }
+
+    public void RemoveEscudo(int quantidade) {
+
+        EscudoAtual -= quantidade;
+
+        if(EscudoAtual <= 0) {
+
+            EscudoAtual = 0;
+            EscudoOff();
+
+        }
+    }
+
+    private void EscudoOn() {
+
+        escudoAtivo = true;
+        escudoParticle.Play();
+    }
+
+    private void EscudoOff() {
+
+        escudoAtivo = true;
+        escudoParticle.Stop();
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
 
 //para fazer com que a nave principal passe a criar tiros a partir de si, tivemos que transformar o tiro em um prefab e fazermos a seguinte lógica: criar uma variável 
