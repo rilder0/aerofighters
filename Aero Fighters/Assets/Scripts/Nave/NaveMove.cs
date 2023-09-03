@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class NaveMove : MonoBehaviour
 {
-    public GameObject bulletPrefab;
     public GameObject LocalBullets; //local em que os tiros serão disparados
     
     private int BulletSelected = 0; //0 = tiro simples;; 1 = tiro 2;;  2 = tiro 3
@@ -16,16 +15,17 @@ public class NaveMove : MonoBehaviour
     public int RestHealths; //vidas restantes
     
     private int health; //variavel que guarda a quantidade de vidas atuais (n a quantidade de vidas restantes)
-    public HealthBar healthbar; //variavel do tipo Healthbar pra acessar os métodos dessa classe
 
-    public GameObject bulletPf;
-    public GameObject bullet1Pf;
-    public GameObject bullet2Pf;
-    public GameObject bullet3Pf;
+    public GameObject TiroAtual; //Prefab que vai ficar assumindo os prefab dos 3 tiros. É tipo um prefab vazio q vai receber vários prefabs
+    public GameObject TiroFoguete; //Prefab do tiro foguete
+    public GameObject TiroLaser; //Prefab do tiro laser
+    public GameObject TiroRapido; //tiro simples. o de munição infinita.
 
     public GameObject ImagemSelecaoB1;
     public GameObject ImagemSelecaoB2;
     public GameObject ImagemSelecaoB3;
+
+    public BulletControl bulletcontrol; //variavel pra acessar os métodos e atributos dessa classe
     
     
     
@@ -43,7 +43,7 @@ public class NaveMove : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            BulletSelected = (BulletSelected + 1) % 3;
+            BulletSelected = (BulletSelected + 1) % 3; 
         }
         
         
@@ -58,9 +58,25 @@ public class NaveMove : MonoBehaviour
         {
             this.bulle1ttime = 0f;
 
-            if (Input.GetKey(KeyCode.Space))
-            {
-                Atirar();
+            if (Input.GetKey(KeyCode.Space)) {
+
+                if (BulletSelected == 0 && BulletControl.MuniçãoTiroRapido > 0) { //caso o usuario esteja clicando o botão de espaço, se ele tiver com uma bala
+                                                                                  //específica selecionada e se ela tiver munição, aí pode atirar e remover uma 
+                    Atirar();                                                     //munição em seguida
+                }
+
+                if(BulletSelected == 1 && BulletControl.MuniçãoTiroLaser > 0) {
+
+                    Atirar();
+                    BulletControl.MuniçãoTiroLaser--;
+
+                }
+
+                else if (BulletSelected == 2 && BulletControl.MuniçãoTiroFoguete > 0) {
+
+                    Atirar();
+                    BulletControl.MuniçãoTiroFoguete--;
+                }
             }
         }
         
@@ -72,6 +88,8 @@ public class NaveMove : MonoBehaviour
         
         this.rigidbody.velocity = new Vector2(velocidadeX, velocidadeY);
 
+        Debug.Log("Munição do tiro laser: " + BulletControl.MuniçãoTiroLaser);
+        //Debug.Log("Porcentagem = " + (BulletControl.);
     }
 
     private void OnTriggerEnter2D(Collider2D collission)
@@ -128,21 +146,23 @@ public class NaveMove : MonoBehaviour
         switch (BulletSelected) 
         {
             case 0:
-                bulletPf = bullet1Pf;
+                TiroAtual = TiroRapido;
                 break;
+            
             case 1:
-                bulletPf = bullet2Pf;
+                TiroAtual  = TiroLaser;
                 break;
+
             case 2:
-                bulletPf = bullet3Pf;
+                TiroAtual = TiroFoguete;
                 break;
+
             default:
-                bulletPf = bullet1Pf;
+                TiroAtual = TiroRapido;
                 break;
         }
 
-        Instantiate(this.bulletPf, this.transform.position, Quaternion.identity);
-        //Instantiate(this.bullet1prefab, this.transform.position, Quaternion.identity);
+        Instantiate(this.TiroAtual, this.transform.position, Quaternion.identity);
     }    
 }
 
