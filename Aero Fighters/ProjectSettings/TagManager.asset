@@ -11,6 +11,8 @@ TagManager:
   - BattleCruiser
   - bullet2
   - bullet3
+  - EscudoColetavel
+  - Escudo
   layers:
   - Default
   - TransparentFX

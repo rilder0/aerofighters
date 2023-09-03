@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class NaveMove : MonoBehaviour
 {
@@ -21,9 +22,6 @@ public class NaveMove : MonoBehaviour
     public GameObject TiroLaser; //Prefab do tiro laser
     public GameObject TiroRapido; //tiro simples. o de munição infinita.
 
-    public GameObject ImagemSelecaoB1;
-    public GameObject ImagemSelecaoB2;
-    public GameObject ImagemSelecaoB3;
 
     public BulletControl bulletcontrol; //variavel pra acessar os métodos e atributos dessa classe
 
@@ -33,7 +31,7 @@ public class NaveMove : MonoBehaviour
     private int EscudoAtual; //quantidade atual de escudo
     private int escudoMax = 30; //quantidade máxima da vida que o escudo pode ter
     private bool escudoAtivo = false;
-    public ParticleSystem escudoParticle;
+    public GameObject escudoImagem; //Imagem do escudo
     
     
     void Start()
@@ -41,12 +39,9 @@ public class NaveMove : MonoBehaviour
         this.RestHealths = 5;
         this.health = 5;
         this.bulle1ttime = 0;
+        this.escudoAtivo = false;
+        escudoImagem.SetActive(false);
         PointsControlr.Pontuation = 0; //jogador inicia com pontuacao = 0
-        if(escudoAtivo == true) {
-                EscudoAtual = EscudoInicial;
-
-        }
-        escudoParticle.Stop(); //
     }
 
     void Update()
@@ -98,17 +93,23 @@ public class NaveMove : MonoBehaviour
         
         this.rigidbody.velocity = new Vector2(velocidadeX, velocidadeY);
 
-        Debug.Log("Munição do tiro laser: " + BulletControl.MuniçãoTiroLaser);
+        //Debug.Log("Munição do tiro laser: " + BulletControl.MuniçãoTiroLaser);
     }
 
     private void OnTriggerEnter2D(Collider2D collission)
     {
         if (collission.CompareTag("obstacle"))
         {
+            if(escudoAtivo == false) {
             health--;
             Obstacles obstacles = collission.GetComponent<Obstacles>();
             obstacles.DestroyObstacles(false);
+            }
+            else if (escudoAtivo == true) {
 
+
+
+            }
         }
         if (collission.CompareTag("CaçaEstelar"))
         {
@@ -130,6 +131,12 @@ public class NaveMove : MonoBehaviour
             BattleCruiser battlecruiser = collission.GetComponent<BattleCruiser>();
             battlecruiser.DestroyBattleCruiser(false); //impedir que o battlecruiser se destrua quando tocar com o jogador
 
+        }
+
+        if(collission.CompareTag("EscudoColetavel")) 
+        {
+            EscudoOn();
+            escudoAtivo = true;
         }
 
 
@@ -202,13 +209,13 @@ public class NaveMove : MonoBehaviour
     private void EscudoOn() {
 
         escudoAtivo = true;
-        escudoParticle.Play();
+        escudoImagem.SetActive(true);
     }
 
     private void EscudoOff() {
 
         escudoAtivo = true;
-        escudoParticle.Stop();
+        escudoImagem.SetActive(false);
     }
 
 

@@ -29,6 +29,11 @@ public class EnemyControl : MonoBehaviour
 
     public HpBoss HpBossPrefab;
 
+    //Variáveis para instanciar escudo
+    public EscudoColetavel escudoPrefab;
+    private float TimeAfterEscudo;
+    
+
 
 
 
@@ -40,21 +45,23 @@ public class EnemyControl : MonoBehaviour
         this.timeAfterCaça = 0;
         this.timeAfterAttackShip = 0;
         this.timeAfterBoss = 0;
+        this.TimeAfterEscudo = 0;
     }
 
     void Update()
     {
-        this.HpBossPrefab.gameObject.SetActive(false);
+        //this.HpBossPrefab.gameObject.SetActive(false);
         CriarObstaculo1();
         CriarObstaculo2();
+        CriarEscudo();
         TimeforAppear += Time.deltaTime;
         if (this.TimeforAppear >= 10 && TimeforAppear <= 150)
         {
             //CriarCaça();
             //CriarAttackShip();
             //CriarBattleCruiser();
-            CriarBoss();
-            this.HpBossPrefab.gameObject.SetActive(true);
+            //CriarBoss();
+            //this.HpBossPrefab.gameObject.SetActive(true);
         }
 
         if (TimeforAppear >= 155)
@@ -180,6 +187,39 @@ public class EnemyControl : MonoBehaviour
         }
 
     }
+
+    private void CriarEscudo() 
+    {
+        this.TimeAfterEscudo += Time.deltaTime;
+
+        if(this.TimeAfterEscudo >= 4) {
+
+            this.TimeAfterEscudo = 0;
+
+            Vector2 EscudoPositionMaximum = Camera.main.ViewportToScreenPoint(new Vector2(8, 4));
+            Vector2 EscudoPositionMinimum = Camera.main.ViewportToScreenPoint(new Vector2(8, -3));
+
+            float EscudoPositionY = Random.Range(4,-3);
+            
+            Vector2 EscudoPosition = new Vector2(8, EscudoPositionY);
+            
+            Instantiate(this.escudoPrefab, EscudoPosition, Quaternion.identity);
+        }
+
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
 }
 
 //esse codigo serve pra 

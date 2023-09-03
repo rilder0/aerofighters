@@ -73,7 +73,7 @@ public class BulletControl : MonoBehaviour
 
         float porcentagem = (QuantidadeAtualMunicao / (float)QuantidadeMaxMunicao) * 100;
         int PorcentagemInteira = Mathf.FloorToInt(porcentagem); //Arrenda pro valor inteiro + próximo
-        textoporcentagem.text = PorcentagemInteira.ToString() + "%";
+        textoporcentagem.text = PorcentagemInteira.ToString() + " %";
 
     }
 }
