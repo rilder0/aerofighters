@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Video;
 
 public class NaveMove : MonoBehaviour
 {
@@ -27,11 +28,10 @@ public class NaveMove : MonoBehaviour
 
 
     //variáveis do escudo
-    private int EscudoInicial = 10; //quantidade de vida inicial de escudo
-    private int EscudoAtual; //quantidade atual de escudo
-    private int escudoMax = 30; //quantidade máxima da vida que o escudo pode ter
-    private bool escudoAtivo = false;
+    private bool escudoAtivo = false; //verifica se o escudo tá ativo ou não
+    public bool EstaColidindoEscudo = false;
     public GameObject escudoImagem; //Imagem do escudo
+    public Escudo escudo;
     
     
     void Start()
@@ -100,15 +100,10 @@ public class NaveMove : MonoBehaviour
     {
         if (collission.CompareTag("obstacle"))
         {
-            if(escudoAtivo == false) {
+            if(escudoAtivo == false && escudo.EscudoHealth < 0 && EstaColidindoEscudo == false) {
             health--;
             Obstacles obstacles = collission.GetComponent<Obstacles>();
             obstacles.DestroyObstacles(false);
-            }
-            else if (escudoAtivo == true) {
-
-
-
             }
         }
         if (collission.CompareTag("CaçaEstelar"))
@@ -135,8 +130,14 @@ public class NaveMove : MonoBehaviour
 
         if(collission.CompareTag("EscudoColetavel")) 
         {
+            EstaColidindoEscudo = true;
             EscudoOn();
             escudoAtivo = true;
+
+            if(escudo.EscudoHealth < 0 && EstaColidindoEscudo == true) {
+
+                escudo.EscudoHealth = 5;
+            }
         }
 
 
@@ -181,29 +182,14 @@ public class NaveMove : MonoBehaviour
         Instantiate(this.TiroAtual, this.transform.position, Quaternion.identity);
     }    
 
+    public void RemoveEscudo(int vidadoescudo) {
 
-    public void AddEscudo(int quantidade) {
+        if(vidadoescudo < 0) {
 
-        EscudoAtual += quantidade;
-
-        if(EscudoAtual > escudoMax) {
-
-            EscudoAtual = escudoMax;
+        EscudoOff();
+        
         }
 
-        EscudoOn();
-    }
-
-    public void RemoveEscudo(int quantidade) {
-
-        EscudoAtual -= quantidade;
-
-        if(EscudoAtual <= 0) {
-
-            EscudoAtual = 0;
-            EscudoOff();
-
-        }
     }
 
     private void EscudoOn() {
@@ -214,11 +200,21 @@ public class NaveMove : MonoBehaviour
 
     private void EscudoOff() {
 
-        escudoAtivo = true;
+        escudoAtivo = false;
         escudoImagem.SetActive(false);
     }
 
+    public void EstaColidindoColetavel (bool tacolidindo, int vidaescudo) {
 
+        if(tacolidindo == true  && vidaescudo <= 0) {
+
+            vidaescudo = 5;
+            EscudoOn();
+
+        }
+        
+
+    }
 
 
 

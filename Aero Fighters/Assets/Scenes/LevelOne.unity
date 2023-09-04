@@ -1486,6 +1486,7 @@ MonoBehaviour:
   TiroRapido: {fileID: 8117045073874146520, guid: e5976a3fe80214f4c8bc484853c7da16, type: 3}
   bulletcontrol: {fileID: 1647805155}
   escudoImagem: {fileID: 1609557622}
+  escudo: {fileID: 1609557626}
 --- !u!68 &846846967
 EdgeCollider2D:
   m_ObjectHideFlags: 0
