@@ -9,7 +9,6 @@ public class EscudoColetavel : MonoBehaviour
     private float velocidadeMin = 5; //velocidaes mínimas e máximas pra que a velocidade seja um n° aleatório entre elas
     private float velocidadeMax = 6;
     private float velocidadeX; //velocidade no eixo x
-    public bool ColidiuPorra = false;
     
     void Start()
     {
@@ -19,7 +18,6 @@ public class EscudoColetavel : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision) {
 
         if(collision.CompareTag("Player")) {
-            ColidiuPorra = true;
             Destroy(this.gameObject); //destruir o coletável de esc
         }
     }

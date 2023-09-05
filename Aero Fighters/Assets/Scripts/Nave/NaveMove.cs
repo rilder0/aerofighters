@@ -36,6 +36,9 @@ public class NaveMove : MonoBehaviour
     //Variáveis para acessar métodos e atributos dos power ups
     public BulletControl bulletcontroll;
     
+    //Variavel pra dar fedback de qual tiro tá selecionado
+    public GameObject ImagemSelecao;
+    
     void Start()
     {
         this.RestHealths = 5;
@@ -112,23 +115,32 @@ public class NaveMove : MonoBehaviour
         }
         if (collission.CompareTag("CaçaEstelar"))
         {
-            health--;
-            CaçaEstelar caçaestelar = collission.GetComponent<CaçaEstelar>();
-            caçaestelar.DestroyCaça(false);
+            if (escudoAtivo == false)
+            {
+                health--;
+                CaçaEstelar caçaestelar = collission.GetComponent<CaçaEstelar>();
+                caçaestelar.DestroyCaça(false);
+
+            }
         }
 
         if (collission.CompareTag("AttackShip"))
         {
-            health -= 2;
-            AttackShip attackship = collission.GetComponent<AttackShip>();
-            attackship.DestroyAttackShip(false);
+            if (escudoAtivo == false)
+            {
+                health -= 2;
+                AttackShip attackship = collission.GetComponent<AttackShip>();
+                attackship.DestroyAttackShip(false);            }
         }
 
         if (collission.CompareTag("BattleCruiser"))
         {
-            health -= 2;
-            BattleCruiser battlecruiser = collission.GetComponent<BattleCruiser>();
-            battlecruiser.DestroyBattleCruiser(false); //impedir que o battlecruiser se destrua quando tocar com o jogador
+            if (escudoAtivo == false)
+            {
+                health -= 2;
+                BattleCruiser battlecruiser = collission.GetComponent<BattleCruiser>();
+                battlecruiser.DestroyBattleCruiser(false); //impedir que o battlecruiser se destrua quando tocar com o jogador
+            }
 
         }
 

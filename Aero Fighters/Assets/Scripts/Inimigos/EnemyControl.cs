@@ -41,6 +41,9 @@ public class EnemyControl : MonoBehaviour
     public LaserColetavel lasercoletavelprefab;
     private float TimeAfterLaser; //tempo pro laser aparecer
     
+    //Variavel para controlar o aparecimento da barra de vida do boss
+    public GameObject HPBoss;
+    
 
 
 
@@ -56,6 +59,7 @@ public class EnemyControl : MonoBehaviour
         this.TimeAfterEscudo = 0;
         this.TimeAfterFoguete = 0;
         this.TimeAfterLaser = 0;
+        this.HPBoss.SetActive(false);
     }
 
     void Update()
@@ -72,13 +76,14 @@ public class EnemyControl : MonoBehaviour
             CriarCaça();
             CriarAttackShip();
             CriarBattleCruiser();
-            CriarBoss();
-            //this.HpBossPrefab.gameObject.SetActive(true);
+            //CriarBoss();
+            //HPBoss.SetActive(true);
         }
 
-        if (TimeforAppear >= 155)
+        if (TimeforAppear >= 10)
         {
-            CriarBoss();
+            //CriarBoss();
+            //HPBoss.SetActive(true);
         }
     }
 
