@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &958344855089753820
+--- !u!1 &1923237822336700509
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,40 +8,40 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5570541187790131496}
-  - component: {fileID: 2882700229115881223}
-  - component: {fileID: 8412902596768948042}
-  - component: {fileID: 495468941624843254}
-  - component: {fileID: 8412902596768948046}
+  - component: {fileID: 2160498210485912774}
+  - component: {fileID: 7708483265083938506}
+  - component: {fileID: 529995563}
+  - component: {fileID: 3706873744666610838}
+  - component: {fileID: 8153172028863475308}
   m_Layer: 0
-  m_Name: "EscudoColet\xE1vel"
-  m_TagString: EscudoColetavel
+  m_Name: "FogueteColet\xE1vel"
+  m_TagString: FogueteColetavel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5570541187790131496
+--- !u!4 &2160498210485912774
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 958344855089753820}
+  m_GameObject: {fileID: 1923237822336700509}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.6215999, y: 1.4655414, z: -0.5381937}
-  m_LocalScale: {x: 0.11628036, y: 0.11628036, z: 0.11628036}
+  m_LocalPosition: {x: -2.5151, y: -7.0251, z: 0}
+  m_LocalScale: {x: 0.13521251, y: 0.13521251, z: 0.13521251}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &2882700229115881223
+--- !u!212 &7708483265083938506
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 958344855089753820}
+  m_GameObject: {fileID: 1923237822336700509}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -76,25 +76,38 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: 21300000, guid: a3b7b24195502834784f231090078634, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 79e7539f44f654e45905cb69932805b8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 8.05, y: 8.83}
+  m_Size: {x: 10.8, y: 10.8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!50 &8412902596768948042
+--- !u!114 &529995563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1923237822336700509}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdf14ac5a00bbda44b282c57579a5a59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PwFogueteRig: {fileID: 3706873744666610838}
+--- !u!50 &3706873744666610838
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 958344855089753820}
+  m_GameObject: {fileID: 1923237822336700509}
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
@@ -108,33 +121,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!58 &495468941624843254
+--- !u!58 &8153172028863475308
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 958344855089753820}
+  m_GameObject: {fileID: 1923237822336700509}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.11038845, y: -0.19869998}
+  m_Offset: {x: 0, y: -0.28106984}
   serializedVersion: 2
-  m_Radius: 2.9578674
---- !u!114 &8412902596768948046
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 958344855089753820}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ec92d47bfdde204b97947d15a033598, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  EscudoRig: {fileID: 8412902596768948042}
-  ColidiuPorra: 0
+  m_Radius: 3.3521988

@@ -13,6 +13,8 @@ TagManager:
   - bullet3
   - EscudoColetavel
   - Escudo
+  - FogueteColetavel
+  - LaserColetavel
   layers:
   - Default
   - TransparentFX

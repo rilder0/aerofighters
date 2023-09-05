@@ -31,8 +31,10 @@ public class NaveMove : MonoBehaviour
     private bool escudoAtivo = false; //verifica se o escudo tá ativo ou não
     public bool EstaColidindoEscudo = false;
     public GameObject escudoImagem; //Imagem do escudo
-    public Escudo escudo;
-    
+    public Escudo escudo;  
+
+    //Variáveis para acessar métodos e atributos dos power ups
+    public BulletControl bulletcontroll;
     
     void Start()
     {
@@ -94,15 +96,17 @@ public class NaveMove : MonoBehaviour
         this.rigidbody.velocity = new Vector2(velocidadeX, velocidadeY);
 
         //Debug.Log("Munição do tiro laser: " + BulletControl.MuniçãoTiroLaser);
+        //AddEscudo(EstaColidindoEscudo, escudo.escudohealth);
     }
 
     private void OnTriggerEnter2D(Collider2D collission)
     {
         if (collission.CompareTag("obstacle"))
         {
-            if(escudoAtivo == false && escudo.EscudoHealth < 0 && EstaColidindoEscudo == false) {
+            if(escudoAtivo == false) {
             health--;
             Obstacles obstacles = collission.GetComponent<Obstacles>();
+            obstacles.HealthAObstacles--;
             obstacles.DestroyObstacles(false);
             }
         }
@@ -134,10 +138,28 @@ public class NaveMove : MonoBehaviour
             EscudoOn();
             escudoAtivo = true;
 
-            if(escudo.EscudoHealth < 0 && EstaColidindoEscudo == true) {
-
-                escudo.EscudoHealth = 5;
+            if(escudo.EscudoActualHealth <= 0) {
+                EscudoOn();
+                escudo.EscudoActualHealth = escudo.EscudoMaxHealth;
             }
+            if(escudo.EscudoActualHealth > 0 && escudoAtivo == true) {
+
+                escudo.EscudoActualHealth = escudo.EscudoMaxHealth;
+            }
+        }
+
+        if(collission.CompareTag("FogueteColetavel")) {
+
+            BulletControl.MuniçãoTiroFoguete = BulletControl.MuniçãoTiroFogueteMax; //Caso o jogador colida com o power up de munição do tiro foguete, a
+                                                                                    //a munição atual volta a ser a munição máxima
+        }
+
+        if(collission.CompareTag("LaserColetavel")) {
+
+            BulletControl.MuniçãoTiroLaser = BulletControl.MuniçãoTiroLaserMax;
+
+
+
         }
 
 
@@ -184,50 +206,35 @@ public class NaveMove : MonoBehaviour
 
     public void RemoveEscudo(int vidadoescudo) {
 
-        if(vidadoescudo < 0) {
+        if(vidadoescudo <= 0) {
 
-        EscudoOff();
+            vidadoescudo = 0;
+            EscudoOff();
         
         }
 
     }
 
-    private void EscudoOn() {
+    public void AddEscudo(bool tacolidindo, int vidaescudo) {
 
+        //EscudoOn();
+        if(vidaescudo == 0 && tacolidindo == true) {
+
+            vidaescudo = 5;
+
+        }
+    }
+
+    private void EscudoOn() {
         escudoAtivo = true;
         escudoImagem.SetActive(true);
     }
 
-    private void EscudoOff() {
+    public void EscudoOff() {
 
         escudoAtivo = false;
         escudoImagem.SetActive(false);
     }
-
-    public void EstaColidindoColetavel (bool tacolidindo, int vidaescudo) {
-
-        if(tacolidindo == true  && vidaescudo <= 0) {
-
-            vidaescudo = 5;
-            EscudoOn();
-
-        }
-        
-
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }
 

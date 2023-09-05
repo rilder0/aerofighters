@@ -10,7 +10,8 @@ public class BulletControl : MonoBehaviour
     public Text MunicaoB3Text;
 
 
-    private static int MunicaoFoguete = 10;
+    private static int MunicaoFogueteAtual = 10;
+    private static int MunicaoFogueteMax = 10;
     private static int MunicaoLaserAtual = 15;
     private static int MunicaoLaserMax = 15;
     private static int MunicaoRapido = 50000000; 
@@ -22,7 +23,7 @@ public class BulletControl : MonoBehaviour
 
     void Update()
     {
-        MunicaoB1Text.text = MunicaoFoguete.ToString();
+        MunicaoB1Text.text = MunicaoFogueteAtual.ToString();
         PorcentagemAtualizada(MunicaoLaserAtual, MunicaoLaserMax, MunicaoB2Text);
         MunicaoB3Text.text = "∞"; //munição infinita
     }
@@ -30,16 +31,45 @@ public class BulletControl : MonoBehaviour
     public static int MuniçãoTiroFoguete 
     {
         get {
-            return MunicaoFoguete;
+            return MunicaoFogueteAtual;
         }
         set {
-            MunicaoFoguete = value;
-            if(MunicaoFoguete < 0) {
-                MunicaoFoguete = 0;
+            MunicaoFogueteAtual = value;
+            if(MunicaoFogueteAtual < 0) {
+                MunicaoFogueteAtual = 0;
             }
         }
 
     }
+
+    public static int MuniçãoTiroFogueteMax {
+
+        get {
+            return MunicaoFogueteMax;
+        }
+        set {
+            MunicaoFogueteMax = value;
+        }
+    }
+
+    public static int MuniçãoTiroLaserMax {
+
+        get {
+            return MunicaoLaserMax;
+        }
+        set {
+            MunicaoLaserMax = value;
+        }
+    }
+
+
+
+
+
+
+
+
+
 
     public static int MuniçãoTiroLaser 
     {

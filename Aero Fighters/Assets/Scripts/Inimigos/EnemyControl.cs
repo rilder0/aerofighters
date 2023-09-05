@@ -32,6 +32,14 @@ public class EnemyControl : MonoBehaviour
     //Variáveis para instanciar escudo
     public EscudoColetavel escudoPrefab;
     private float TimeAfterEscudo;
+
+    //Variáveis para instanciar power up do foguete
+    public FogueteColetavel FogueteColetavelPreFab;
+    private float TimeAfterFoguete;
+
+    //Variáveis para instanciar power up do laser
+    public LaserColetavel lasercoletavelprefab;
+    private float TimeAfterLaser; //tempo pro laser aparecer
     
 
 
@@ -46,6 +54,8 @@ public class EnemyControl : MonoBehaviour
         this.timeAfterAttackShip = 0;
         this.timeAfterBoss = 0;
         this.TimeAfterEscudo = 0;
+        this.TimeAfterFoguete = 0;
+        this.TimeAfterLaser = 0;
     }
 
     void Update()
@@ -54,13 +64,15 @@ public class EnemyControl : MonoBehaviour
         CriarObstaculo1();
         CriarObstaculo2();
         CriarEscudo();
+        CriarPowerupFoguete();
+        CriarPowerupLaser();
         TimeforAppear += Time.deltaTime;
         if (this.TimeforAppear >= 10 && TimeforAppear <= 150)
         {
-            //CriarCaça();
-            //CriarAttackShip();
-            //CriarBattleCruiser();
-            //CriarBoss();
+            CriarCaça();
+            CriarAttackShip();
+            CriarBattleCruiser();
+            CriarBoss();
             //this.HpBossPrefab.gameObject.SetActive(true);
         }
 
@@ -205,12 +217,45 @@ public class EnemyControl : MonoBehaviour
             
             Instantiate(this.escudoPrefab, EscudoPosition, Quaternion.identity);
         }
-
-
-
     }
 
+    private void CriarPowerupFoguete() 
+    {
+        this.TimeAfterFoguete += Time.deltaTime;
 
+        if(this.TimeAfterFoguete >= 4) {
+
+            this.TimeAfterFoguete = 0;
+
+            Vector2 PwFoguetePositionMaximum = Camera.main.ViewportToScreenPoint(new Vector2(8, 4));
+            Vector2 PwFoguetePositionMinimum = Camera.main.ViewportToScreenPoint(new Vector2(8, -3));
+
+            float PwFoguetePositionY = Random.Range(4,-3);
+            
+            Vector2 PwFoguetePosition = new Vector2(8, PwFoguetePositionY);
+            
+            Instantiate(this.FogueteColetavelPreFab, PwFoguetePosition, Quaternion.identity);
+        }
+    }
+
+    private void CriarPowerupLaser() 
+    {
+        this.TimeAfterLaser += Time.deltaTime;
+
+        if(this.TimeAfterLaser >= 4) {
+
+            this.TimeAfterLaser = 0;
+
+            Vector2 PwLaserPositionMaximum = Camera.main.ViewportToScreenPoint(new Vector2(8, 4));
+            Vector2 PwLaserPositionMinimum = Camera.main.ViewportToScreenPoint(new Vector2(8, -3));
+
+            float PwLaserPositionY = Random.Range(4,-3);
+            
+            Vector2 PwLaserPosition = new Vector2(8, PwLaserPositionY);
+            
+            Instantiate(this.lasercoletavelprefab, PwLaserPosition, Quaternion.identity);
+        }
+    }
 
 
 
