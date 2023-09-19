@@ -31,5 +31,11 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene(sceneName);
     }
-    
+
+    public void CarregarInterface()
+    {
+        SceneManager.LoadScene("GUI");
+
+        SceneManager.LoadScene("LevelOne", LoadSceneMode.Additive);
+    }
 }

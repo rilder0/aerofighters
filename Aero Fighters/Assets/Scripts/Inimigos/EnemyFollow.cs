@@ -10,11 +10,11 @@ public class EnemyFollow : MonoBehaviour
 
     void Start()
     {
-        WhoFollow = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+//        WhoFollow = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
     }
 
     void Update()
     {
-        transform.position = Vector2.MoveTowards(transform.position, WhoFollow.position, speed * Time.deltaTime);
+//        transform.position = Vector2.MoveTowards(transform.position, WhoFollow.position, speed * Time.deltaTime);
     }
 }
