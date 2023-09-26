@@ -15,6 +15,7 @@ TagManager:
   - Escudo
   - FogueteColetavel
   - LaserColetavel
+  - posicao
   layers:
   - Default
   - TransparentFX

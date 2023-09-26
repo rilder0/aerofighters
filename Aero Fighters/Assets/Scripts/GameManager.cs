@@ -1,13 +1,17 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
 {
 
     public static GameManager Instance;
+    public NaveMove player;
+    public GameObject posicao;
 
 
     private void Awake()
@@ -19,11 +23,13 @@ public class GameManager : MonoBehaviour
         }
         else
             Destroy(gameObject);
+
     }
 
     private void Start()
     {
         LoadScene("MainMenu");
+
     }
 
 
@@ -33,9 +39,19 @@ public class GameManager : MonoBehaviour
     }
 
     public void CarregarInterface()
+    
+    
     {
         SceneManager.LoadScene("GUI");
 
-        SceneManager.LoadScene("LevelOne", LoadSceneMode.Additive);
+        SceneManager.LoadSceneAsync("LevelOne", LoadSceneMode.Additive).completed += operation =>
+        {
+            posicao = GameObject.FindWithTag("posicao");
+            Vector2 ps = posicao.transform.position;
+
+
+            Instantiate(player, ps, quaternion.identity);
+
+        };
     }
 }
