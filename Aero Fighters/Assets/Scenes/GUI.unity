@@ -583,6 +583,7 @@ GameObject:
   m_Component:
   - component: {fileID: 582517617}
   - component: {fileID: 582517618}
+  - component: {fileID: 582517619}
   m_Layer: 5
   m_Name: HPNave
   m_TagString: Untagged
@@ -630,6 +631,18 @@ MonoBehaviour:
   - {fileID: 1448613345}
   - {fileID: 234037398}
   - {fileID: 878864641}
+--- !u!114 &582517619
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 582517616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dfe8d967aa4b10418ff66d8315a6b7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &720006779
 GameObject:
   m_ObjectHideFlags: 0
@@ -1811,6 +1824,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1841229188}
+  - component: {fileID: 1841229189}
   m_Layer: 5
   m_Name: Points
   m_TagString: Untagged
@@ -1840,6 +1854,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 120.873, y: 100}
   m_Pivot: {x: 1, y: 1}
+--- !u!114 &1841229189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1841229187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e145ae51f3665d6438ee9190f48645a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1882272513
 GameObject:
   m_ObjectHideFlags: 0
