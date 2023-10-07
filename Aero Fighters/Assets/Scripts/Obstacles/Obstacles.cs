@@ -42,8 +42,6 @@ public class Obstacles : MonoBehaviour
         if (isover)
         {
             PointsControlr.Pontuation++;
-            naveprincipal.AddPoints(10);
-
         }
 
         if (obstacleshealth <= 0)

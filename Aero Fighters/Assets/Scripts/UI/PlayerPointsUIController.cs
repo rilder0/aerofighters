@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class PlayerPointsUIController : MonoBehaviour
 {
 
-    private TMP_Text pointsText;
+    public TMP_Text pointsText;
 
     private void OnEnable() {
 

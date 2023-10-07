@@ -39,6 +39,8 @@ public class NaveMove : MonoBehaviour
     
     void Start()
     {
+        _currentEnergy = 100;
+        maxEnergy = 100;
         _points = 0;
         this.RestHealths = 5;
         this.health = 5;
@@ -60,8 +62,8 @@ public class NaveMove : MonoBehaviour
         
         
         
-        if(this._currentEnergy <= 0 && this.RestHealths >= 0) {   //caso a vida chegue a zero, mas ainda tenha vidas restantes
-            this._currentEnergy = maxEnergy;                              //a barra de vida recomeça valendo 5 (o hp enche de novo)
+        if(this.Health <= 0 && this.RestHealths >= 0) {   //caso a vida chegue a zero, mas ainda tenha vidas restantes
+            this.Health = 5;                              //a barra de vida recomeça valendo 5 (o hp enche de novo)
             this.RestHealths--;                           //e uma vida é retirada
         }
 
@@ -73,7 +75,6 @@ public class NaveMove : MonoBehaviour
             if (Input.GetKey(KeyCode.Space)) {
 
                 AddPoints(10);
-
                 if (BulletSelected == 0 && BulletControl.MuniçãoTiroRapido > 0) { //caso o usuario esteja clicando o botão de espaço, se ele tiver com uma bala
                                                                                   //específica selecionada e se ela tiver munição, aí pode atirar e remover uma 
                     Atirar();                                                     //munição em seguida
@@ -110,7 +111,7 @@ public class NaveMove : MonoBehaviour
     {
         if (collission.CompareTag("obstacle"))
         {
-            AddEnergy(10);
+            AddEnergy(1);
             if(escudoAtivo == false) {
             health--;
             Obstacles obstacles = collission.GetComponent<Obstacles>();
@@ -253,27 +254,19 @@ public class NaveMove : MonoBehaviour
 
 
 
-    public void AddPoints(int amount) {
+    public void AddPoints(int pontos) {
 
-        _points += amount;
+         _points = Mathf.Clamp(_points + pontos, 0, 500);
 
-     PlayerObserverManeger.PointsChanged(_points);
+        PlayerObserverManeger.PointsChanged(_points);
 
 
     }
 
-    public void AddEnergy(int amount) {
+    public void AddEnergy(int desconto) {
 
-        _currentEnergy -= amount;
+        _currentEnergy = Mathf.Clamp(_currentEnergy - desconto, 0, maxEnergy);
 
-        if(_currentEnergy > maxEnergy) {
-
-            _currentEnergy = maxEnergy;
-        }
-        if(_currentEnergy <= 0) {
-
-            _currentEnergy = 0;
-        }
      PlayerObserverManeger.EnergyChanged(_currentEnergy);
 
     }

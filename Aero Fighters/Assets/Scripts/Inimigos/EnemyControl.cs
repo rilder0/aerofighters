@@ -64,15 +64,15 @@ public class EnemyControl : MonoBehaviour
         //this.HpBossPrefab.gameObject.SetActive(false);
         CriarObstaculo1();
         CriarObstaculo2();
-        CriarEscudo();
-        CriarPowerupFoguete();
-        CriarPowerupLaser();
+        //CriarEscudo();
+        //CriarPowerupFoguete();
+        //CriarPowerupLaser();
         TimeforAppear += Time.deltaTime;
         if (this.TimeforAppear >= 10 && TimeforAppear <= 150)
         {
-            CriarCaça();
-            CriarAttackShip();
-            CriarBattleCruiser();
+            //CriarCaça();
+            //CriarAttackShip();
+            //CriarBattleCruiser();
             //CriarBoss();
             //HPBoss.SetActive(true);
         }

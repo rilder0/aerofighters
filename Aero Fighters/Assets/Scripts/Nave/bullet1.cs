@@ -52,7 +52,6 @@ public class bullet1 : MonoBehaviour
         if (collision.CompareTag("obstacle"))
         {
             NaveMove nave = collision.GetComponent<NaveMove>();
-            nave.AddPoints(10);
             Obstacles obstacles = collision.GetComponent<Obstacles>();
             obstacles.HealthAObstacles -= 1;
             Destroy(this.gameObject);
