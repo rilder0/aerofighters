@@ -27,8 +27,6 @@ public class EnemyControl : MonoBehaviour
     public Boss BossOriginal;
     private float timeAfterBoss;
 
-    public HpBoss HpBossPrefab;
-
     //Variáveis para instanciar escudo
     public EscudoColetavel escudoPrefab;
     private float TimeAfterEscudo;
@@ -59,7 +57,6 @@ public class EnemyControl : MonoBehaviour
         this.TimeAfterEscudo = 0;
         this.TimeAfterFoguete = 0;
         this.TimeAfterLaser = 0;
-        this.HPBoss.SetActive(false);
     }
 
     void Update()

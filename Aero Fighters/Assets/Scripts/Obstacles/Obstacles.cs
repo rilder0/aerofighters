@@ -11,6 +11,8 @@ public class Obstacles : MonoBehaviour
     
     private int obstacleshealth;
 
+    public NaveMove naveprincipal;
+
     void Start()
     {
         obstacleshealth = 1;
@@ -40,6 +42,8 @@ public class Obstacles : MonoBehaviour
         if (isover)
         {
             PointsControlr.Pontuation++;
+            naveprincipal.AddPoints(10);
+
         }
 
         if (obstacleshealth <= 0)

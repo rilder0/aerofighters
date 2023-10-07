@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,19 +11,15 @@ public static class PlayerObserverManeger
     public static void PointsChanged(int points) { //com a informação que os pontos mudaram, a classe usará esse método para atualizar
                                                    //os pontos na variavel de pontos, que podemos mostrar na GUI
         OnPointsChanged?.Invoke(points);
+    }
 
     public static Action<int> OnEnergyChanged;
 
-    public static void EnergyChanged (int energy) {
+    public static void EnergyChanged(int energy) {
 
         OnEnergyChanged?.Invoke(energy);
 
     }
-
-
-
-    }
-
 }
 
 //a classe PlayerObserverManger é como se fosse um canal no YouTube. Pessoas podem fazer a ação de se inscrever nele. Quando alguém 

@@ -122,6 +122,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Bullet1rigidbody: {fileID: 8117045073874146503}
   bullet1velocityX: 10
+  naveprincipal: {fileID: 1711076676151213691, guid: 3b922a3d240823f448a6c692d36d3346, type: 3}
 --- !u!61 &-4093962449707036058
 BoxCollider2D:
   m_ObjectHideFlags: 0

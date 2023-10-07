@@ -20,7 +20,7 @@ public static class PointsControlr
             {
                 points = 0;
             }
-            Debug.Log("Pontuação = " + Pontuation);
+            //Debug.Log("Pontuação = " + Pontuation);
         }
     }
 }

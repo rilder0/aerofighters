@@ -102,6 +102,7 @@ MonoBehaviour:
   ObstacleRigidbody: {fileID: 3184846531465199848}
   velocidadeMin: 10
   velocidadeMax: 11
+  naveprincipal: {fileID: 1711076676151213691, guid: 3b922a3d240823f448a6c692d36d3346, type: 3}
 --- !u!50 &3184846531465199848
 Rigidbody2D:
   serializedVersion: 4

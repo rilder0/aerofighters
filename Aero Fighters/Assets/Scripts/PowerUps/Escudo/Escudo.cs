@@ -17,7 +17,7 @@ public class Escudo : MonoBehaviour
 
     void Update() 
     {
-        Debug.Log("Vida do escudo = " + EscudoActualHealth);
+        //Debug.Log("Vida do escudo = " + EscudoActualHealth);
 
         if(EscudoActualHealth <= 0) {
 

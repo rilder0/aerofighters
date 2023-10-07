@@ -6,9 +6,7 @@ using UnityEngine.UI;
 using UnityEngine.Video;
 
 public class NaveMove : MonoBehaviour
-{
-    public GameObject LocalBullets; //local em que os tiros serão disparados
-    
+{    
     private int BulletSelected = 0; //0 = tiro simples;; 1 = tiro 2;;  2 = tiro 3
 
     public new Rigidbody2D rigidbody;
@@ -16,16 +14,19 @@ public class NaveMove : MonoBehaviour
     private float bulle1ttime;
     public int RestHealths; //vidas restantes
     
+    //pontos e vida
     private int health; //variavel que guarda a quantidade de vidas atuais (n a quantidade de vidas restantes)
+
+    private int _points;
+
+    private int _currentEnergy;
+
+    [SerializeField] private int maxEnergy;
 
     public GameObject TiroAtual; //Prefab que vai ficar assumindo os prefab dos 3 tiros. É tipo um prefab vazio q vai receber vários prefabs
     public GameObject TiroFoguete; //Prefab do tiro foguete
     public GameObject TiroLaser; //Prefab do tiro laser
     public GameObject TiroRapido; //tiro simples. o de munição infinita.
-
-
-    public BulletControl bulletcontrol; //variavel pra acessar os métodos e atributos dessa classe
-
 
     //variáveis do escudo
     private bool escudoAtivo = false; //verifica se o escudo tá ativo ou não
@@ -35,9 +36,6 @@ public class NaveMove : MonoBehaviour
 
     //Variáveis para acessar métodos e atributos dos power ups
     public BulletControl bulletcontroll;
-    
-    //Variavel pra dar fedback de qual tiro tá selecionado
-    public GameObject ImagemSelecao;
     
     void Start()
     {
@@ -51,6 +49,8 @@ public class NaveMove : MonoBehaviour
 
     void Update()
     {
+        Debug.Log("PONTUAÇÃO NOVA = " + _points);
+
         if (Input.GetKeyDown(KeyCode.Z))
         {
             BulletSelected = (BulletSelected + 1) % 3; 
@@ -246,6 +246,21 @@ public class NaveMove : MonoBehaviour
 
         escudoAtivo = false;
         escudoImagem.SetActive(false);
+    }
+
+
+
+
+    public int AddPoints(int amount) {
+
+        return _points = Mathf.Clamp(_points + amount, 0, int.MaxValue); // (valor de referência, menor valor possível, maior valor possível)
+
+    }
+
+    public int AddEnergy(int amount) {
+
+        return _currentEnergy = Mathf.Clamp(_currentEnergy + amount, 0, maxEnergy);
+
     }
 
 }
