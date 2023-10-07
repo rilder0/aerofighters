@@ -18,9 +18,9 @@ public class RunningGame : MonoBehaviour
     
     void Update()
     {
-        this.healthbar.ShowLifes(this.navemove.Health);
-        this.PointsText.text = PointsControlr.Pontuation.ToString();
-        this.RestHealth.text = navemove.RestHealths.ToString();
+        //this.healthbar.ShowLifes(this.navemove.Health);
+        //this.PointsText.text = PointsControlr.Pontuation.ToString();
+        //this.RestHealth.text = navemove.RestHealths.ToString();
         //Debug.Log("Pontuação = " + PointsControlr.Pontuation);
         //Debug.Log("Vidas = " + navemove.Health);
         //Debug.Log("Vidas Restantes = " + navemove.RestHealths);

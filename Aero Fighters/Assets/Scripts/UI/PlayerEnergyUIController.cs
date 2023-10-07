@@ -1,18 +1,34 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerEnergyUIController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    private Slider energySlider;
+
+    private void OnEnable() {
+
+        PlayerObserverManeger.OnEnergyChanged += UpdateEnergy;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    private void OnDisable() {
+
+        PlayerObserverManeger.OnEnergyChanged -= UpdateEnergy;
+
     }
+
+    private void Awake() {
+
+        energySlider = GetComponent<Slider>();
+
+    }
+
+
+    private void UpdateEnergy(int value) {
+
+        energySlider.value = value;
+    }
+
+
 }

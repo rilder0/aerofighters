@@ -17,11 +17,11 @@ public class NaveMove : MonoBehaviour
     //pontos e vida
     private int health; //variavel que guarda a quantidade de vidas atuais (n a quantidade de vidas restantes)
 
-    private int _points;
+    private int _points = 0;
 
     private int _currentEnergy;
 
-    [SerializeField] private int maxEnergy;
+    [SerializeField] private int maxEnergy = 100;
 
     public GameObject TiroAtual; //Prefab que vai ficar assumindo os prefab dos 3 tiros. É tipo um prefab vazio q vai receber vários prefabs
     public GameObject TiroFoguete; //Prefab do tiro foguete
@@ -39,17 +39,19 @@ public class NaveMove : MonoBehaviour
     
     void Start()
     {
+        _points = 0;
         this.RestHealths = 5;
         this.health = 5;
         this.bulle1ttime = 0;
         this.escudoAtivo = false;
         escudoImagem.SetActive(false);
-        PointsControlr.Pontuation = 0; //jogador inicia com pontuacao = 0
+        //PointsControlr.Pontuation = 0; //jogador inicia com pontuacao = 0
     }
 
     void Update()
     {
         Debug.Log("PONTUAÇÃO NOVA = " + _points);
+        Debug.Log("VIDA ATUAL = " + _currentEnergy);
 
         if (Input.GetKeyDown(KeyCode.Z))
         {
@@ -58,8 +60,8 @@ public class NaveMove : MonoBehaviour
         
         
         
-        if(this.health <= 0 && this.RestHealths >= 0) {   //caso a vida chegue a zero, mas ainda tenha vidas restantes
-            this.health = 5;                              //a barra de vida recomeça valendo 5 (o hp enche de novo)
+        if(this._currentEnergy <= 0 && this.RestHealths >= 0) {   //caso a vida chegue a zero, mas ainda tenha vidas restantes
+            this._currentEnergy = maxEnergy;                              //a barra de vida recomeça valendo 5 (o hp enche de novo)
             this.RestHealths--;                           //e uma vida é retirada
         }
 
@@ -69,6 +71,8 @@ public class NaveMove : MonoBehaviour
             this.bulle1ttime = 0f;
 
             if (Input.GetKey(KeyCode.Space)) {
+
+                AddPoints(10);
 
                 if (BulletSelected == 0 && BulletControl.MuniçãoTiroRapido > 0) { //caso o usuario esteja clicando o botão de espaço, se ele tiver com uma bala
                                                                                   //específica selecionada e se ela tiver munição, aí pode atirar e remover uma 
@@ -106,6 +110,7 @@ public class NaveMove : MonoBehaviour
     {
         if (collission.CompareTag("obstacle"))
         {
+            AddEnergy(10);
             if(escudoAtivo == false) {
             health--;
             Obstacles obstacles = collission.GetComponent<Obstacles>();
@@ -169,9 +174,6 @@ public class NaveMove : MonoBehaviour
         if(collission.CompareTag("LaserColetavel")) {
 
             BulletControl.MuniçãoTiroLaser = BulletControl.MuniçãoTiroLaserMax;
-
-
-
         }
 
 
@@ -251,15 +253,28 @@ public class NaveMove : MonoBehaviour
 
 
 
-    public int AddPoints(int amount) {
+    public void AddPoints(int amount) {
 
-        return _points = Mathf.Clamp(_points + amount, 0, int.MaxValue); // (valor de referência, menor valor possível, maior valor possível)
+        _points += amount;
+
+     PlayerObserverManeger.PointsChanged(_points);
+
 
     }
 
-    public int AddEnergy(int amount) {
+    public void AddEnergy(int amount) {
 
-        return _currentEnergy = Mathf.Clamp(_currentEnergy + amount, 0, maxEnergy);
+        _currentEnergy -= amount;
+
+        if(_currentEnergy > maxEnergy) {
+
+            _currentEnergy = maxEnergy;
+        }
+        if(_currentEnergy <= 0) {
+
+            _currentEnergy = 0;
+        }
+     PlayerObserverManeger.EnergyChanged(_currentEnergy);
 
     }
 
