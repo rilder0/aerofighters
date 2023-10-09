@@ -11,7 +11,7 @@ public class PlayerPointsUIController : MonoBehaviour
 
     private void OnEnable() {
 
-        PlayerObserverManeger.OnEnergyChanged += UpdatePoints;
+        PlayerObserverManeger.OnPointsChanged += UpdatePoints;
     }
 
     private void OnDisable() {
