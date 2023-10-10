@@ -84,7 +84,7 @@ public class NaveMove : MonoBehaviour
 
             if (Input.GetKey(KeyCode.Space)) {
 
-                AddPoints(10);
+                //AddPoints(10);
                 if (BulletSelected == 0 && BulletControl.MuniçãoTiroRapido > 0) { //caso o usuario esteja clicando o botão de espaço, se ele tiver com uma bala
                                                                                   //específica selecionada e se ela tiver munição, aí pode atirar e remover uma 
                     Atirar();                                                     //munição em seguida
@@ -133,6 +133,7 @@ public class NaveMove : MonoBehaviour
         {
             if (escudoAtivo == false)
             {
+                AddEnergy(1);
                 health--;
                 CaçaEstelar caçaestelar = collission.GetComponent<CaçaEstelar>();
                 caçaestelar.DestroyCaça(false);
@@ -144,6 +145,7 @@ public class NaveMove : MonoBehaviour
         {
             if (escudoAtivo == false)
             {
+                AddEnergy(1);
                 health -= 2;
                 AttackShip attackship = collission.GetComponent<AttackShip>();
                 attackship.DestroyAttackShip(false);            }
@@ -153,6 +155,7 @@ public class NaveMove : MonoBehaviour
         {
             if (escudoAtivo == false)
             {
+                AddEnergy(1);
                 health -= 2;
                 BattleCruiser battlecruiser = collission.GetComponent<BattleCruiser>();
                 battlecruiser.DestroyBattleCruiser(false); //impedir que o battlecruiser se destrua quando tocar com o jogador
@@ -177,7 +180,7 @@ public class NaveMove : MonoBehaviour
         }
 
         if(collission.CompareTag("FogueteColetavel")) {
-
+            
             BulletControl.MuniçãoTiroFoguete = BulletControl.MuniçãoTiroFogueteMax; //Caso o jogador colida com o power up de munição do tiro foguete, a
                                                                                     //a munição atual volta a ser a munição máxima
         }

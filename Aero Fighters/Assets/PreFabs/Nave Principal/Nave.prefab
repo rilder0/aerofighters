@@ -176,7 +176,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1711076676151213695}
-  m_LocalRotation: {x: -0, y: -0, z: -0.7100688, w: 0.70413226}
+  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
   m_LocalPosition: {x: -11.6, y: 0.04, z: -0.0005}
   m_LocalScale: {x: 0.18476123, y: 0.18476123, z: 0.18476123}
   m_ConstrainProportionsScale: 0
@@ -184,7 +184,7 @@ Transform:
   - {fileID: 1711076675295994093}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90.481}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
 --- !u!212 &1711076676151213694
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -270,20 +270,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa7751caf8d47eb458f4fcf67d111ed0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LocalBullets: {fileID: 0}
   rigidbody: {fileID: 1711076676151213688}
   velocidadeMovimento: 5
   RestHealths: 5
+  maxEnergy: 100
   TiroAtual: {fileID: 0}
   TiroFoguete: {fileID: 7627870742556521057, guid: 6414d83d95ccf184bae2f7a6fe9d9549, type: 3}
   TiroLaser: {fileID: 4748152215755587290, guid: 02b14e755dbde5e4c99b973a9d5b3a90, type: 3}
   TiroRapido: {fileID: 8117045073874146520, guid: e5976a3fe80214f4c8bc484853c7da16, type: 3}
-  bulletcontrol: {fileID: 0}
   EstaColidindoEscudo: 0
   escudoImagem: {fileID: 1711076675537912827}
   escudo: {fileID: 1711076675537912823}
   bulletcontroll: {fileID: 0}
-  ImagemSelecao: {fileID: 0}
 --- !u!68 &1711076676151213690
 EdgeCollider2D:
   m_ObjectHideFlags: 0

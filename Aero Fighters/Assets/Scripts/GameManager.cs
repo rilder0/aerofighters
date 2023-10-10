@@ -50,7 +50,7 @@ public class GameManager : MonoBehaviour
             Vector2 ps = posicao.transform.position;
 
 
-            Instantiate(player, ps, quaternion.identity);
+            Instantiate(player, ps, player.transform.rotation);
 
         };
     }
