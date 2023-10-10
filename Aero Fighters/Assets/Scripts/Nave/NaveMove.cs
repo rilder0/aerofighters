@@ -26,6 +26,9 @@ public class NaveMove : MonoBehaviour
     private int MaxTenBulletMunicao = 10;
     private int _currentTenBulletMunicao = 10;
 
+    private int _maxPorcentBulletMunicao = 15;
+    private int _currentPorcentBulletMunicao = 15;
+
     public GameObject TiroAtual; //Prefab que vai ficar assumindo os prefab dos 3 tiros. É tipo um prefab vazio q vai receber vários prefabs
     public GameObject TiroFoguete; //Prefab do tiro foguete
     public GameObject TiroLaser; //Prefab do tiro laser
@@ -47,6 +50,8 @@ public class NaveMove : MonoBehaviour
         _points = 0;
         MaxTenBulletMunicao = 10;
         _currentTenBulletMunicao = 10;
+        _currentPorcentBulletMunicao = 15;
+        _maxPorcentBulletMunicao = 15;
         this.RestHealths = 5;
         this.health = 5;
         this.bulle1ttime = 0;
@@ -80,19 +85,19 @@ public class NaveMove : MonoBehaviour
             if (Input.GetKey(KeyCode.Space)) {
 
                 AddPoints(10);
-                /*if (BulletSelected == 0 && BulletControl.MuniçãoTiroRapido > 0) { //caso o usuario esteja clicando o botão de espaço, se ele tiver com uma bala
+                if (BulletSelected == 0 && BulletControl.MuniçãoTiroRapido > 0) { //caso o usuario esteja clicando o botão de espaço, se ele tiver com uma bala
                                                                                   //específica selecionada e se ela tiver munição, aí pode atirar e remover uma 
                     Atirar();                                                     //munição em seguida
                 }
 
-                /*if(BulletSelected == 1 && BulletControl.MuniçãoTiroLaser > 0) {
+                if(BulletSelected == 1 && _currentPorcentBulletMunicao > 0) {
 
                     Atirar();
-                    BulletControl.MuniçãoTiroLaser--;
+                    TakeOffPorcentBullet(1);
 
-                }*/
+                }
 
-                if (BulletSelected == 2 && _currentTenBulletMunicao > 0) {
+                else if (BulletSelected == 2 && _currentTenBulletMunicao > 0) {
 
                     Atirar();
                     TakeOffTenBullet(1);
@@ -280,6 +285,13 @@ public class NaveMove : MonoBehaviour
 
         _currentTenBulletMunicao = Mathf.Clamp(_currentTenBulletMunicao - amount, 0, MaxTenBulletMunicao);
         PlayerBulletObserver.TenBulletChanged(_currentTenBulletMunicao);
+    }
+
+    public void TakeOffPorcentBullet(int amount) {
+
+        _currentPorcentBulletMunicao = Mathf.Clamp(_currentPorcentBulletMunicao - amount, 0, _maxPorcentBulletMunicao);
+
+        PlayerBulletObserver.PorcentBulletChanged(_currentPorcentBulletMunicao);
     }
 
 }
